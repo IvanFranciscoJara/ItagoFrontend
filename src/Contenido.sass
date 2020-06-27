@@ -1,0 +1,210 @@
+@import './GlobalVars'
+
+.ContenedorContenido    
+    
+    height: 100vh
+    width: 100vw
+    display: grid
+    grid-template-columns: 1fr 3fr
+    grid-template-rows: 1fr 9fr 1fr
+    grid-template-areas: 'Perfil UsuarioActual''UsuariosDisponibles Mensajes''UsuariosDisponibles CajaTexto'    
+    @media screen and (max-width: 800px)
+        grid-template-columns: 1fr
+        grid-template-rows: 1fr 9fr 1fr
+        grid-template-areas: 'UsuarioActual''Mensajes''CajaTexto'
+    .FondoLateral
+        display: none
+        transition: .5s
+        @media screen and (max-width: 800px)
+            display: block
+            position: fixed
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            z-index: 4
+            background-color: #4b4b4b85
+        &.Esconder
+            transform: translateX(-100%)
+
+        
+    .Perfil
+        grid-area: Perfil          
+        background-color: #ededed
+        display: flex        
+        align-items: center          
+        transition: .7s      
+        p
+            margin-left: 20px
+        // border: 1px solid green
+        @media screen and (max-width: 800px)
+            width: 70%
+            height: 50px
+            grid-area: none
+            position: fixed
+            z-index: 5
+            border: 1px solid green   
+            &.Esconder
+                transform: translateX(-100%)
+    .UsuariosDisponibles      
+        gri-area: UsuariosDisponibles   
+        // border: 1px solid red  
+        background-color: $white
+        transition: .4s
+        
+        @media screen and (max-width: 800px)
+            grid-area: none
+            position: fixed
+            width: 70%
+            top: 50px
+            height: calc(100% - 50px)
+            z-index: 5
+            &.Esconder
+                transform: translateX(-100%)
+            
+        .Usuario
+            padding: 15px
+            border-bottom: 1px solid $gray-200                      
+            color: $black
+            &:hover
+                background-color: $gray-200
+            .Nombre
+                font-size: $big
+        
+    .UsuarioActual
+        grid-area: UsuarioActual
+        background-color: #ededed
+        border-left: 1px solid rgba(0,0,0,0.08)
+        text-align: left
+        padding-left: 20px
+        display: flex            
+        align-items: center
+        .Menu
+            display: none
+        // flex-direction: column  
+        strong 
+            margin-left: 15px    
+        svg
+            height: 20px
+            width: 20px
+            margin-right: 15px
+        @media screen and (max-width: 800px)
+            .Menu
+                display: block
+    .Mensajes
+        grid-area: Mensajes        
+        background-color: $gray-200
+        background-image: url("./imagenes/Fondo.png")
+        background-repeat: repeat        
+        overflow-y: scroll                        
+        padding: 20px 0
+        &::-webkit-scrollbar 
+            width: 5px
+        &::-webkit-scrollbar-thumb
+            background-color: $gray-500
+            opacity: 0.9
+        &.intro
+            background-color: #f8f9fa
+            background-image: none
+            display: flex
+            justify-content: center
+            align-items: center            
+
+            .Selecciona
+                display: block
+        .Selecciona
+            width: 25vw
+            height: 25vw                        
+            display: none
+            text-align: center            
+            color: $gray-800
+            img
+                // height: 100%
+                width: 100%
+        .Mensaje
+            display: flex            
+            margin: 3px 30px                      
+            &.RECIBIDO                
+                justify-content: flex-start
+                .Mensaje__Contenido
+                    background-color: $white
+            &.ENVIADO                                    
+                justify-content: flex-end
+                .Mensaje__Contenido
+                    background-color: #dcf8c6
+            &__Contenido
+                box-shadow: 0px 0px 5px 0px rgba(212, 212, 212, 0.75)                    
+                padding: 7px                    
+                border: 1px solid $gray-300                                        
+                border-radius: 10px                    
+                display: flex
+                justify-content: center
+                align-items: flex-end
+                &__Mensaje
+                    max-width: 400px 
+                    word-wrap: break-word
+                &__Hora
+                    margin-left: 15px
+                    font-size: 10px
+                    color: $gray-500
+                    margin-bottom: -2px
+                svg
+                    margin-left: 15px
+                    // font-size: 10px
+                    color: $gray-500
+                    margin-bottom: -2px
+                    &.V
+                        color: $blue                            
+    .CajaTexto
+        grid-area: CajaTexto        
+        background-color: $gray-300        
+        display: flex
+        justify-content: center
+        align-items: center        
+        div            
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+        .Input
+            flex: 9           
+            input
+                border: none
+                border-radius: 20px                        
+                padding: 9px 15px               
+                font-size: 13px
+                outline: none
+                width: 95%
+        .Boton
+            flex: 1                   
+            button                
+                border: none                
+                display: flex
+                justify-content: center
+                align-items: center
+                background-color: rgba(0,0,0,0)
+                &:hover
+                    cursor: pointer
+                svg
+                    color: $gray-600
+                                
+
+        
+
+    // .UsuariosLinea
+        
+    // font-weight: bold
+    // .Mensajes
+    //     border: 1px solid $gray-500
+    //     padding: 10px        
+    //     .Mensaje
+    //         display: flex            
+    //         .Usuario
+    //             flex: 1
+    //             background-color: $red
+    //         .Contenido
+    //             flex: 4
+    //             background-color: $gray-200
+
+
+
