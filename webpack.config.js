@@ -28,7 +28,7 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005' : 'http://40.69.164.16:3005/')
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005' : 'https://www.backendivan.com/')
       }),
       new CopyPlugin({
         patterns: [
