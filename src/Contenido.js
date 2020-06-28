@@ -5,8 +5,8 @@ import { v4 as uuidv4 } from 'uuid'
 import { parseISO, format, isAfter } from 'date-fns'
 import { IconDoubleCheck, IconSend, IconMenu } from './icons'
 import Welcome from './Welcome'
-console.log(process.env.TIPO)
-console.log(process.env.GLOBAL_URL)
+// console.log(process.env.TIPO)
+// console.log(process.env.GLOBAL_URL)
 console.log('de global url', GLOBAL_URL)
 // const URL = 'http://localhost:3005'
 const URL = GLOBAL_URL
@@ -28,6 +28,7 @@ const EstadopInicial = {
 
 const reducer = (state, action) => {
   let NewConversaciones
+  let OldConversaciones
   let Index
   console.log(`usando reducer: ${action.type}`)
   switch (action.type) {
@@ -35,13 +36,20 @@ const reducer = (state, action) => {
       return { ...state, UsuarioActual: action.idUsuario }
     case 'LlenarUsuariosDisponibles':
       console.log(action.data)
-      NewConversaciones = state.Conversaciones
+      OldConversaciones = state.Conversaciones
+      NewConversaciones = []
       action.data.forEach(USU => {
-        Index = NewConversaciones.findIndex(Usuario => Usuario.idUsuario === USU.ID)
-        if (Index === -1) {
+        Index = OldConversaciones.findIndex(Usuario => Usuario.idUsuario === USU.ID)
+        console.log(Index)
+        console.log(OldConversaciones[Index])
+        if (Index === 1) {
+          console.log(Index)
+          NewConversaciones.push(OldConversaciones[Index])
+        } else {
           NewConversaciones.push({ idUsuario: USU.ID, Usuario: USU.USUARIO, UltimaRevision: new Date(), Mensajes: [] })
         }
       })
+      console.log(NewConversaciones)
       return { ...state, Conversaciones: NewConversaciones }
     case 'InsertarMensajePropio':
       NewConversaciones = state.Conversaciones
@@ -78,7 +86,8 @@ const Contenido = props => {
   }
 
   const EnviarMensaje = () => {
-    if (estado.UsuarioActual === -1) {
+    let Index = estado.Conversaciones.findIndex(Usuario => Usuario.idUsuario === estado.UsuarioActual)
+    if (Index === -1) {
       alert('Seleccion un usuario para conversar')
       return
     }

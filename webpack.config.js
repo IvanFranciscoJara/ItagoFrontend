@@ -11,6 +11,7 @@ module.exports = env => {
       path: path.resolve(__dirname, 'dist'),
       filename: 'index_bundle.js'
     },
+    devtool: '#eval-source-map',
     node: {
       fs: 'empty'
     },
