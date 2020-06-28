@@ -5,7 +5,13 @@ import { v4 as uuidv4 } from 'uuid'
 import { parseISO, format, isAfter } from 'date-fns'
 import { IconDoubleCheck, IconSend, IconMenu } from './icons'
 import Welcome from './Welcome'
-const socket = io('http://localhost:3000')
+console.log(process.env.TIPO)
+console.log(process.env.GLOBAL_URL)
+console.log('de global url', GLOBAL_URL)
+// const URL = 'http://localhost:3005'
+const URL = GLOBAL_URL
+console.log(URL)
+const socket = io(URL)
 
 // const ME_usuario = prompt('Quien Eres?')
 // const ME_usuario = 'Ivan Francisco'

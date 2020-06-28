@@ -1,6 +1,10 @@
-const io = require('socket.io')(3000)
+var app = require('express')()
+var http = require('http').createServer(app)
+const io = require('socket.io')(http)
 
-let clientes = []
+app.get('/', (req, res) => {
+  res.send('<h1>Servidor ChatApp</h1>')
+})
 
 io.on('connection', socket => {
   // console.log('Se conecto un usuario', socket.id, clientes)
@@ -66,3 +70,9 @@ io.on('connection', socket => {
     // io.emit("disconnected", client.id);
   })
 })
+
+http.listen(3005, () => {
+  console.log('listening on *:3005')
+})
+
+let clientes = []
