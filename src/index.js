@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 // import './index.sass'
-import Contenido from './Contenido.js'
+import App from './App.js'
 
 // class App extends React.Component {
 //   render() {
@@ -9,4 +9,4 @@ import Contenido from './Contenido.js'
 //   }
 // }
 
-ReactDom.render(<Contenido />, document.getElementById('app'))
+ReactDom.render(<App />, document.getElementById('app'))

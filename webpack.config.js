@@ -29,7 +29,7 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005' : 'https://www.backendivan.com/')
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005/' : 'https://www.backendivan.com/')
       }),
       new CopyPlugin({
         patterns: [

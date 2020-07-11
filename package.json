@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "create": "webpack --env.TIPO=prod --progress --colors",
@@ -19,6 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.10.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "date-fns": "^2.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

@@ -17,7 +17,8 @@ const Welcome = props => {
   }
 
   return (
-    <div className='ContenedorWelcome'>
+    // <div className='ContenedorWelcome esconder'>
+    <div className='ContenedorWelcome esconder'>
       <div className='FondoOscuro'></div>
       <div className='Contenido'>
         <h1>Hi</h1>

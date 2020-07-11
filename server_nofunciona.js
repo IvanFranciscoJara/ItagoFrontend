@@ -35,7 +35,8 @@ io.on('connection', socket => {
       io.to(clientes[IndexDestino].ID_SOCKET).emit('mensaje_cliente_a_cliente', {
         Origen: clientes[IndexOrigen].ID,
         Mensaje: MENSAJE.MENSAJE,
-        Hora: MENSAJE.HORA
+        Hora: MENSAJE.HORA,
+        ReplyFrom: MENSAJE.REPLYFROM
       })
     }
     // console.log(Index, clientes[Index].ID_SOCKET)

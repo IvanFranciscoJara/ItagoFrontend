@@ -1,0 +1,34 @@
+@import '../GlobalVars'
+
+.ContenedorCajaMensajes 
+    width: 100%
+    height: 100%    
+    position: relative
+    background-color: $gray-200
+    background-image: url("../imagenes/Fondo.png")
+    background-repeat: repeat        
+    overflow-y: scroll                        
+    padding: 20px 0    
+    &::-webkit-scrollbar 
+        width: 5px
+    &::-webkit-scrollbar-thumb
+        background-color: $gray-500
+        opacity: 0.9
+    &.intro
+        background-color: #f8f9fa
+        background-image: none
+        display: flex
+        justify-content: center
+        align-items: center            
+
+        .Selecciona
+            display: block
+    .Selecciona
+        width: 25vw
+        height: 25vw                        
+        display: none
+        text-align: center            
+        color: $gray-800
+        img
+            // height: 100%
+            width: 100% 
