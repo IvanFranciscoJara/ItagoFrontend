@@ -18,12 +18,20 @@ const Mensaje = ({ Mensaje, ReplyFromMessage, UltimaRevision, Usuario, Reply }) 
           </div>
         )}
         <div className='TheMessage'>
-          <div className='TheMessage__Message'>{Mensaje.Mensaje}</div>
-          <div className='TheMessage__TimeAndViewed'>
-            {format(Mensaje.Hora, 'h:mm a')}
-            {Mensaje.Tipo === 'ENVIADO' && (
-              <IconDoubleCheck className={`${isAfter(UltimaRevision, Mensaje.Hora) ? 'V' : 'NV'}`} />
-            )}
+          {Mensaje.ArchivoAdjunto.URL && (
+            <div className='TheMessage__Image'>
+              <img src={Mensaje.ArchivoAdjunto.URL}></img>
+              <p>{Mensaje.ArchivoAdjunto.Nombre}</p>
+            </div>
+          )}
+          <div className='TheMessage_MessageText'>
+            <div className='TheMessage__MessageText_Message'>{Mensaje.Mensaje}</div>
+            <div className='TheMessage__MessageText_TimeAndViewed'>
+              {format(Mensaje.Hora, 'h:mm a')}
+              {Mensaje.Tipo === 'ENVIADO' && (
+                <IconDoubleCheck className={`${isAfter(UltimaRevision, Mensaje.Hora) ? 'V' : 'NV'}`} />
+              )}
+            </div>
           </div>
         </div>
       </div>

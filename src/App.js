@@ -24,31 +24,32 @@ const socket = io(URL, { transports: ['websocket'] })
 
 const EstadopInicial = {
   Conversaciones: [
-    {
-      idUsuario: 55,
-      Usuario: 'Hugo',
-      HoraRevision: new Date(),
-      Mensajes: [
-        {
-          Hora: new Date(),
-          Mensaje: 'asd',
-          Tipo: 'ENVIADO'
-        },
-        {
-          Hora: new Date(),
-          Mensaje: 'asdSDSD',
-          Tipo: 'RECIBIDO',
-          Adjunto: {
-            URL:
-              'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
-            Nombre: 'asdasda'
-          }
-        }
-      ]
-    }
+    // {
+    //   idUsuario: 55,
+    //   Usuario: 'Hugo',
+    //   HoraRevision: new Date(),
+    //   Mensajes: [
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asd',
+    //       Tipo: 'ENVIADO',
+    //       ArchivoAdjunto: {}
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asdSDSD',
+    //       Tipo: 'RECIBIDO',
+    //       ArchivoAdjunto: {
+    //         URL:
+    //           'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
+    //         Nombre: 'asdasda'
+    //       }
+    //     }
+    //   ]
+    // }
   ],
-  // UsuarioActual: -1,
-  UsuarioActual: 55,
+  UsuarioActual: -1,
+  // UsuarioActual: 55,
   DatosPropios: { idUsuario: '', Usuario: '' }
 }
 // socket.emit('registro', { usuario: ME_usuario, idUsuario: ME_idUsuario })
@@ -62,23 +63,23 @@ const reducer = (state, action) => {
     case 'SeleccionoUsuarioConversar':
       return { ...state, UsuarioActual: action.idUsuario }
     case 'LlenarUsuariosDisponibles':
-      // console.log(action.data)
-      // OldConversaciones = state.Conversaciones
-      // NewConversaciones = []
-      // action.data.forEach(USU => {
-      //   Index = OldConversaciones.findIndex(Usuario => Usuario.idUsuario === USU.ID)
-      //   console.log(Index)
-      //   console.log(OldConversaciones[Index])
-      //   if (Index === 1) {
-      //     console.log(Index)
-      //     NewConversaciones.push(OldConversaciones[Index])
-      //   } else {
-      //     NewConversaciones.push({ idUsuario: USU.ID, Usuario: USU.USUARIO, UltimaRevision: new Date(), Mensajes: [] })
-      //   }
-      // })
-      // console.log(NewConversaciones)
-      // return { ...state, Conversaciones: NewConversaciones }
-      return state
+      console.log(action.data)
+      OldConversaciones = state.Conversaciones
+      NewConversaciones = []
+      action.data.forEach(USU => {
+        Index = OldConversaciones.findIndex(Usuario => Usuario.idUsuario === USU.ID)
+        console.log(Index)
+        console.log(OldConversaciones[Index])
+        if (Index === 1) {
+          console.log(Index)
+          NewConversaciones.push(OldConversaciones[Index])
+        } else {
+          NewConversaciones.push({ idUsuario: USU.ID, Usuario: USU.USUARIO, UltimaRevision: new Date(), Mensajes: [] })
+        }
+      })
+      console.log(NewConversaciones)
+      return { ...state, Conversaciones: NewConversaciones }
+    // return state
     case 'InsertarMensajePropio':
       NewConversaciones = state.Conversaciones
       Index = NewConversaciones.findIndex(Usuario => Usuario.idUsuario === state.UsuarioActual)

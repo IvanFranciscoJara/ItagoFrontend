@@ -55,18 +55,32 @@
             display: flex
             justify-content: center
             align-items: flex-end
+            flex-direction: column
             // border: 1px solid blue
-            &__Message
-                max-width: 400px 
-                word-wrap: break-word
-            &__TimeAndViewed
-                margin-left: 15px
-                font-size: 10px
-                color: $gray-500
-                margin-bottom: -2px
-                svg
-                    margin-left: 5px                    
+            &__Image
+                border: 1px solid $gray-300
+                border-radius: 10px
+                margin-bottom: 10px
+                img
+                    height: 300px
+                    // border: 1px solid blue
+                p
+                    text-align: center
+            &__MessageText
+                display: flex
+                justify-content: center
+                align-items: flex-end
+                &_Message
+                    max-width: 400px 
+                    word-wrap: break-word
+                &_TimeAndViewed
+                    margin-left: 15px
+                    font-size: 10px
                     color: $gray-500
                     margin-bottom: -2px
-                    &.V
-                        color: $blue   
+                    svg
+                        margin-left: 5px                    
+                        color: $gray-500
+                        margin-bottom: -2px
+                        &.V
+                            color: $blue   
