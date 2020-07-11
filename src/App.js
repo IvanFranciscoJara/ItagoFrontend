@@ -12,7 +12,7 @@ import apiRequest from './apiRequest'
 // console.log(process.env.TIPO)
 // console.log(process.env.GLOBAL_URL)
 console.log('de global url', GLOBAL_URL)
-const URL = 'http://localhost:3005/'
+const URL = GLOBAL_URL
 // const URL = GLOBAL_URL
 console.log(URL)
 const socket = io(URL, { transports: ['websocket'] })

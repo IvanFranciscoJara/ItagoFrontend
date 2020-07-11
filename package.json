@@ -4,11 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "create": "webpack --env.TIPO=prod --progress --colors",
-    "start": "webpack-dev-server --env.TIPO=local --progress --colors",
-    "startVM": "webpack-dev-server --env.TIPO=prod --progress --colors",
-    "devStart": "nodemon server.js"
+    "build": "webpack --env.TIPO=prod --progress --colors",
+    "test": "webpack-dev-server --env.TIPO=prod --progress --colors",
+    "dev": "webpack-dev-server --env.TIPO=local --progress --colors"
   },
   "author": "",
   "license": "ISC",
