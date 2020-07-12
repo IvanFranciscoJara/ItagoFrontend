@@ -29,11 +29,7 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(
-          env.TIPO === 'local'
-            ? 'http://localhost:3005/'
-            : 'http://chatappserver-env.eba-wmnxyccc.us-east-1.elasticbeanstalk.com/'
-        )
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005/' : 'https://ivanf.net/')
       }),
       new CopyPlugin({
         patterns: [
