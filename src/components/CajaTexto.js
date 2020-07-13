@@ -1,6 +1,6 @@
 import React from 'react'
 import './CajaTexto.sass'
-import { IconDoubleCheck, IconSend, IconMenu, IconEquis } from '../icons'
+import { IconDoubleCheck, IconSend, IconMenu, IconEquis, IconAttach } from '../icons'
 
 const CajaTexto = props => {
   // const EnviarMensaje = () =>{
@@ -22,9 +22,7 @@ const CajaTexto = props => {
       </div>
       <div className='Mensaje'>
         <label className='Mensaje__Attach' htmlFor='TheInput'>
-          {/* <button>
-            <IconSend />
-          </button> */}
+          <IconAttach />
         </label>
         <div className='Mensaje__Input'>
           <input

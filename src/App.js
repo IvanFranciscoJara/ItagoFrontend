@@ -3,6 +3,7 @@ import './App.sass'
 import io from 'socket.io-client'
 import { v4 as uuidv4 } from 'uuid'
 import { parseISO, format, isAfter } from 'date-fns'
+import { parse } from 'date-fns/fp'
 import { IconDoubleCheck, IconSend, IconMenu } from './icons'
 import Welcome from './Welcome'
 import CajaTexto from './components/CajaTexto'
@@ -29,6 +30,70 @@ const EstadopInicial = {
     //   Usuario: 'Hugo',
     //   HoraRevision: new Date(),
     //   Mensajes: [
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asd',
+    //       Tipo: 'ENVIADO',
+    //       ArchivoAdjunto: {}
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asdSDSD',
+    //       Tipo: 'RECIBIDO',
+    //       ArchivoAdjunto: {
+    //         URL:
+    //           'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
+    //         Nombre: 'asdasda'
+    //       }
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asd',
+    //       Tipo: 'ENVIADO',
+    //       ArchivoAdjunto: {}
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asdSDSD',
+    //       Tipo: 'RECIBIDO',
+    //       ArchivoAdjunto: {
+    //         URL:
+    //           'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
+    //         Nombre: 'asdasda'
+    //       }
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asd',
+    //       Tipo: 'ENVIADO',
+    //       ArchivoAdjunto: {}
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asdSDSD',
+    //       Tipo: 'RECIBIDO',
+    //       ArchivoAdjunto: {
+    //         URL:
+    //           'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
+    //         Nombre: 'asdasda'
+    //       }
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asd',
+    //       Tipo: 'ENVIADO',
+    //       ArchivoAdjunto: {}
+    //     },
+    //     {
+    //       Hora: new Date(),
+    //       Mensaje: 'asdSDSD',
+    //       Tipo: 'RECIBIDO',
+    //       ArchivoAdjunto: {
+    //         URL:
+    //           'https://chatappfiles.s3.amazonaws.com/13bc3f77-97cf-42f1-bee4-a1285d932921?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAI64CHDHRDPCROYXQ%2F20200711%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200711T082726Z&X-Amz-Expires=1800&X-Amz-Signature=813a17c93f5da2aabb662c9ffe8bc5a351417dd67b443004fce5f94dd5d3d234&X-Amz-SignedHeaders=host',
+    //         Nombre: 'asdasda'
+    //       }
+    //     },
     //     {
     //       Hora: new Date(),
     //       Mensaje: 'asd',
@@ -79,7 +144,6 @@ const reducer = (state, action) => {
       })
       console.log(NewConversaciones)
       return { ...state, Conversaciones: NewConversaciones }
-    // return state
     case 'InsertarMensajePropio':
       NewConversaciones = state.Conversaciones
       Index = NewConversaciones.findIndex(Usuario => Usuario.idUsuario === state.UsuarioActual)
@@ -95,11 +159,12 @@ const reducer = (state, action) => {
       NewConversaciones = state.Conversaciones
       Index = NewConversaciones.findIndex(Usuario => Usuario.idUsuario === action.Origen)
       console.log(action)
+      console.log(new Date(action.ReplyFrom))
       NewConversaciones[Index].Mensajes.push({
         Tipo: 'RECIBIDO',
         Mensaje: action.Mensaje,
         Hora: parseISO(action.Hora),
-        ReplyFrom: action.ReplyFrom,
+        ReplyFrom: action.ReplyFrom === '' ? '' : new Date(action.ReplyFrom),
         ArchivoAdjunto: action.ArchivoAdjunto
       })
       return { ...state, Conversaciones: NewConversaciones }

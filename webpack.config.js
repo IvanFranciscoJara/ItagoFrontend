@@ -12,6 +12,9 @@ module.exports = env => {
       filename: 'index_bundle.js'
     },
     devtool: '#eval-source-map',
+    devServer: {
+      port: 9000
+    },
     node: {
       fs: 'empty'
     },
@@ -29,7 +32,7 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3005/' : 'https://ivanf.net/')
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:8080/' : 'https://ivanf.net/')
       }),
       new CopyPlugin({
         patterns: [

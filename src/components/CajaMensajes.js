@@ -1,6 +1,6 @@
 import React from 'react'
 import './CajaMensajes.sass'
-import { parseISO, format, isAfter } from 'date-fns'
+import { parseISO, format, isAfter, isEqual } from 'date-fns'
 import { IconDoubleCheck, IconSend, IconMenu } from '../icons'
 import ComponentMensaje from './Mensaje'
 
@@ -15,7 +15,19 @@ const CajaMensajes = props => {
         if (typeof Mensaje.ReplyFrom != 'undefined' && Mensaje.ReplyFrom !== '') {
           console.log(LaConversacion.Mensajes, Mensaje.ReplyFrom)
           ReplyFromMessage =
-            LaConversacion.Mensajes[LaConversacion.Mensajes.findIndex(Mens => Mens.Hora === Mensaje.ReplyFrom)]
+            LaConversacion.Mensajes[
+              LaConversacion.Mensajes.findIndex(Mens => {
+                // console.log('😀', Mens.Hora)
+                // console.log('😀', Mensaje.ReplyFrom)
+                // console.log('😀', Mens.Hora === Mensaje.ReplyFrom)
+                // console.log('😂', Mens.Hora == Mensaje.ReplyFrom)
+                // console.log('😂', (Mens.Hora = Mensaje.ReplyFrom))
+                // console.log('😀', isEqual(Mens.Hora, Mensaje.ReplyFrom))
+                // console.log('😀😀😀😀😀😀😀')
+                return isEqual(Mens.Hora, Mensaje.ReplyFrom)
+              })
+            ]
+          console.log('😀', ReplyFromMessage)
         }
         return (
           <ComponentMensaje

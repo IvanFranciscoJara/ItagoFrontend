@@ -55,7 +55,7 @@ const Adjuntar = props => {
       <div className='FondoOscuro' onClick={CerrarVentanaAdjunta}></div>
       <div className='Contenido'>
         <button className='Contenido__cerrar' onClick={CerrarVentanaAdjunta}>
-          <IconSend />
+          <IconEquis />
         </button>
         <img className='Imagen' id='ImagenAdjunta'></img>
         <input type='file' id='TheInput' name='TheInput' onChange={fileHandler} />
