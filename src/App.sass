@@ -1,148 +1,128 @@
 @import './GlobalVars'
 
 .ContenedorApp        
-    height: 100vh
-    width: 100vw
-    display: grid
-    grid-template-columns: 1fr 3fr
-    grid-template-rows: 1fr 9fr 1fr
-    grid-template-areas: 'Perfil UsuarioActual''UsuariosDisponibles Mensajes''UsuariosDisponibles CajaTexto'    
-    @media screen and (max-width: 800px)
-        grid-template-columns: 1fr
-        grid-template-rows: 1fr 9fr 1fr
-        grid-template-areas: 'UsuarioActual''Mensajes''CajaTexto'
-    .FondoLateral
+    .Content
+        position: relative
+        height: 100vh
+        width: 100vw        
+        display: flex          
+        overflow: hidden              
+        @media screen and (max-width: 800px)
+            height: calc(100vh - 70px)              
+            // overflow: scroll                               
+            .Content__Contacts     
+                width: 100vw              
+                position: absolute
+                top: 0 
+                left: -100vw
+                &.Show
+                    left: 0                
+            .Content__MessageBox                
+                width: 100vw
+                position: absolute
+                top: 0 
+                left: 100vw
+                &.Show
+                    left: 0
+        &__Contacts
+            // border: 1px solid blue
+            height: 100%
+            width: 30%
+            transition: .5s
+        &__MessageBox
+            // border: 1px solid black
+            height: 100%
+            width: 70%
+            transition: .5s
+    .NavBar
+        // border: 1px solid green
+        height: 70px
         display: none
-        transition: .5s
         @media screen and (max-width: 800px)
             display: block
-            position: fixed
-            top: 0
-            left: 0
-            width: 100%
-            height: 100%
-            z-index: 4
-            background-color: #4b4b4b85
-        &.Esconder
-            transform: translateX(-100%)        
-    .Perfil
-        grid-area: Perfil          
-        background-color: #ededed
+          
+    .Perfil          
+        height: 90px          
+        background-color: $P_Green
+        color: $White
         display: flex        
-        align-items: center          
-        transition: .7s      
-        p
-            margin-left: 20px
-        // border: 1px solid green
+        align-items: center  
+        justify-content: center                
+        p            
+            font-size: 28px
+            // margin-left: 20px        
         @media screen and (max-width: 800px)
-            width: 70%
-            height: 50px
-            grid-area: none
-            position: fixed
+            // width: 70%
+            height: 80px                        
             z-index: 5
-            border: 1px solid green   
-            &.Esconder
-                transform: translateX(-100%)
-    .UsuariosDisponibles      
-        gri-area: UsuariosDisponibles   
-        // border: 1px solid red  
-        background-color: $white
-        transition: .4s
-        
-        @media screen and (max-width: 800px)
-            grid-area: none
-            position: fixed
-            width: 70%
-            top: 50px
-            height: calc(100% - 50px)
-            z-index: 5
-            &.Esconder
-                transform: translateX(-100%)
-            
+            // border: 1px solid green         
+    .UsuariosDisponibles                      
+        // background-color: $white        
+        // background-color: $blue                        
+        height: calc(100% - 90px)
+        @media screen and (max-width: 800px)                                    
+            height: calc(100% - 80px)
+            z-index: 5                        
         .Usuario
             padding: 15px
-            border-bottom: 1px solid $gray-200                      
-            color: $black
+            border-bottom: 1.5px solid $P_OtherSoftGray                                
+            display: flex
+            justify-content: space-around
             &:hover
                 background-color: $gray-200
-            .Nombre
-                font-size: $big        
+            .Izquierda
+                width: 60%
+                .Nombre
+                    color: $P_DarkGreen
+                    font-weight: 500
+                    font-size: $big   
+                    margin-bottom: 5px   
+                .UltimoMensaje
+                    color: $P_Gray
+            .Derecha
+                width: 25%
+                display: flex
+                justify-content: center
+                align-items: center
+                button
+                    border-radius: 5px
+                    background-color: $P_ShineGreen
+                    color: $White
+                    font-size: 18px
+                    padding: 7px 10px
+                    border: none
+                    outline: none
+                
     .UsuarioActual
-        grid-area: UsuarioActual
-        background-color: #ededed
-        border-left: 1px solid rgba(0,0,0,0.08)
+        height: 60px        
+        background-color: #ededed        
         text-align: left
         padding-left: 20px
         display: flex            
-        align-items: center
-        .Menu
-            display: none
-        // flex-direction: column  
-        strong 
-            margin-left: 15px    
-        svg
-            height: 20px
-            width: 20px
-            margin-right: 15px
+        align-items: center               
+        font-size: 25px        
+        
+        color: $P_DarkGreen
         @media screen and (max-width: 800px)
-            .Menu
-                display: block
+            height: 50px
+        p
+            &.Elige
+                font-weight: 400
+            &.Usuario
+                font-weight: 500
     .Mensajes
-        grid-area: Mensajes     
+        height: calc(100vh - 60px - 80px)
         overflow-y: auto        
-    .CajaTexto
-        grid-area: CajaTexto                
-             // background-color: $gray-300        
-
-        // display: flex
-        // justify-content: center
-        // align-items: center        
-        // div            
-        //     height: 100%
-        //     display: flex
-        //     justify-content: center
-        //     align-items: center
-        // .Input
-        //     flex: 9           
-        //     border: 1px solid red
-        //     input
-        //         border: none
-        //         border-radius: 20px                        
-        //         padding: 9px 15px               
-        //         font-size: 13px
-        //         outline: none
-        //         width: 95%
-        //     label
-        // .Boton
-        //     flex: 1                   
-        //     button                
-        //         border: none                
-        //         display: flex
-        //         justify-content: center
-        //         align-items: center
-        //         background-color: rgba(0,0,0,0)
-        //         &:hover
-        //             cursor: pointer
-        //         svg
-        //             color: $gray-600
-                                
-
+        @media screen and (max-width: 800px)
+            height: calc(100vh - 50px - 70px - 70px)
+    .CajaTexto        
+        // overflow: hidden
+        height: 80px
+        @media screen and (max-width: 800px)
+            height: 70px
         
-
-    // .UsuariosLinea
-        
-    // font-weight: bold
-    // .Mensajes
-    //     border: 1px solid $gray-500
-    //     padding: 10px        
-    //     .Mensaje
-    //         display: flex            
-    //         .Usuario
-    //             flex: 1
-    //             background-color: $red
-    //         .Contenido
-    //             flex: 4
-    //             background-color: $gray-200
+       
+                                     
 
 
 

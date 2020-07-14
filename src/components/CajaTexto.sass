@@ -2,8 +2,12 @@
 
 .ContenedorCajaTexto  
     width: 100%
-    height: 100%    
+    height: 100%        
     position: relative
+    background-color: $P_SoftGray
+    display: flex
+    justify-content: center
+    align-items: center    
     .Reply
         position: absolute
         height: 70px        
@@ -11,82 +15,120 @@
         top: -70px 
         left: 0    
         display: flex
-        justify-content: center
+        justify-content: space-around
         align-items: center  
-        background-color: $gray-300
-        border-bottom: 1px solid $gray-600      
-        transition: 0.6s
+        background-color: $P_SoftGray
+        // border-bottom: 1px solid $gray-600      
+        transition: 0.5s
+        z-index: 5
+        overflow: hidden
+        border: 1px solid $P_OtherSoftGray
         &.hide
             top: 0
             height: 0    
+            border: 1px solid #ffffff00
             svg
                 display: none      
         &__Message
+            background-color: $white
+            // border: 1px solid red
             display: flex
             justify-content: center            
-            flex-direction: column                        
-            flex: 9
+            flex-direction: column                                   
             padding: 0 15px
+            height: 50px            
+            width: 80%
             p:nth-child(1)                
-                color: $blue
-                font-size: $small
+                color: $P_DarkGreen
+                // font-size: $small
                 font-weight: bold
             p:nth-child(2)                
-                font-size: $small
+                // font-size: $small
         &__Equis
+            // border: 1px solid blue
             display: flex
             justify-content: center
             align-items: center     
-            flex: 1
+            width: 10%
+            height: 100%
             &:hover 
                 cursor: pointer
             svg
                 height: 20px
                 width: 20px
                 color: $gray-600
-    .Mensaje                
-        height: 100%
+    .Mensaje                        
         display: flex
         justify-content: center
-        align-items: center
-        background-color: $gray-300
-        
+        align-items: center 
+        height: 70%
+        width: 100%                       
+        background-color: $White
+        label,
         div
+            // border: 1px solid red
             display: flex
             justify-content: center
             align-items: center
         &__Input            
-            flex: 9                       
-            input
+            width: calc(100% - 54px - 54px)
+            height: 100%           
+            @media screen and (max-width: 800px)
+                width: calc(100% - 47px - 47px)
+            input                
+                background-color: #ffffff00
                 border: none
-                border-radius: 20px                        
-                padding: 9px 15px               
-                font-size: 13px
-                outline: none
-                width: 95%            
-        &__Boton                    
-            flex: 1                                               
-            button      
-                border: none
-                display: flex
-                justify-content: center
-                align-items: center
-                background-color: rgba(0,0,0,0)
-                &:hover
-                    cursor: pointer
-                    svg
-                        color: $gray-600
-        &__Attach                        
-            flex: 1                
-            display: flex
-            justify-content: center
-            align-items: center
-            background-color: rgba(0,0,0,0)
+                // border-bottom: 1px solid $white
+                color: $P_DarkGreen
+                padding: 20px
+                font-size: 18px                
+                width: 100%
+                text-align: left
+                outline: none       
+                &::placeholder
+                    color: $P_OtherSoftGray
+        &__Send,
+        &__Attach       
+            cursor: pointer                 
+            width: 54px
+            height: 100%
+            @media screen and (max-width: 800px)
+                width: 47px
             &:hover
-                cursor: pointer
+                // border: 1px solid red
+                svg
+                    fill: $P_ShineGreen
             svg
                 width: 30px
                 height: 30px
-                color: $gray-600
+                fill: $P_DarkGreen
+        // div
+        //     display: flex
+        //     justify-content: center
+        //     align-items: center
+        // &__Boton                    
+        //     flex: 1                                               
+        //     button      
+        //         border: none
+        //         display: flex
+        //         justify-content: center
+        //         align-items: center
+        //         background-color: rgba(0,0,0,0)
+        //         &:hover
+        //             cursor: pointer
+        //             svg
+        //                 color: $gray-600
+        // &__Attach                        
+        //     flex: 1                
+        //     display: flex
+        //     justify-content: center
+        //     align-items: center
+        //     background-color: rgba(0,0,0,0)
+        //     &:hover
+        //         cursor: pointer
+        //     svg
+        //         width: 30px
+        //         height: 30px
+        //         color: $gray-600
     // div
         

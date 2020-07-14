@@ -1,6 +1,6 @@
 import React from 'react'
 import './CajaTexto.sass'
-import { IconDoubleCheck, IconSend, IconMenu, IconEquis, IconAttach } from '../icons'
+import { IconDoubleCheck, IconSend, IconMenu, IconEquis, IconAttach, P_IconClip, P_IconSend } from '../icons'
 
 const CajaTexto = props => {
   // const EnviarMensaje = () =>{
@@ -21,9 +21,9 @@ const CajaTexto = props => {
         </div>
       </div>
       <div className='Mensaje'>
-        <label className='Mensaje__Attach' htmlFor='TheInput'>
+        {/* <label className='Mensaje__Attach' htmlFor='TheInput'>
           <IconAttach />
-        </label>
+        </label> */}
         <div className='Mensaje__Input'>
           <input
             id='Texto'
@@ -31,14 +31,21 @@ const CajaTexto = props => {
               e.keyCode === 13 && props.EnviarMensaje()
             }}
             onFocus={props.HandleOnFocus}
-            placeholder='Escribe aqui tu mensaje ...'
+            placeholder='Your Message ...'
           />
         </div>
-        <div className='Mensaje__Boton'>
+
+        <label className='Mensaje__Attach' htmlFor='TheInput'>
+          <P_IconClip />
+        </label>
+        <label className='Mensaje__Send' onClick={() => props.EnviarMensaje()}>
+          <P_IconSend />
+        </label>
+        {/* <div className='Mensaje__Boton'>
           <button onClick={() => props.EnviarMensaje()}>
             <IconSend />
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   )

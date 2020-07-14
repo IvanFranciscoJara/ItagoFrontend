@@ -41,7 +41,9 @@ const CajaMensajes = props => {
         )
       })}
       <div className='Selecciona'>
-        <img src='./imagenes/intro.jpg' />
+        <p>
+          No messages yet... <br /> Type your first message
+        </p>
       </div>
     </div>
   )

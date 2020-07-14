@@ -8,59 +8,57 @@
     height: 100vh
     width: 100vw
     transition: 1s
+    background-color: $P_Green
+    display: flex
+    justify-content: center
+    align-items: center
     &.esconder
-        // background-color: #00000077
         transform: translateY(-100%)
-        // .Contenido
-        //     // height: calc((var(--vh, 1vh) * 100))      
-        // .FondoOscuro            
-        //     background-color: rgba(0,0,0,0)
-            
-    .FondoOscuro
-        background-color: #4b4b4b85
-        transition: background-color 1s ease
-        position: absolute
-        top: 0
-        left: 0        
-        width: 100%
-        height: 100%
-        z-index: 9        
-    .Contenido        
-        background-color: $white
-        overflow: hidden
-        z-index: 10
-        position: fixed
-        top: 50%        
-        left: 50%
-        transform: translate(-50%,-50%)        
-        border: 1px solid $gray-600
-        padding: 30px 50px
-        border-radius: 10px
-        h1
+   
+    .Contenido    
+        width: 30%                    
+        @media screen and (max-width: 800px)
+            width: 70%
+        h1            
+            color: $white
+            font-size: 60px
+            margin-bottom: 0px
+        p
+            font-size: 20px
+            margin-bottom: 80px
+            color: $white
+            text-align: right
+       
+        .Alerta
+            color: $red
+            margin-bottom: 10px
+    
+        input
+            background-color: #ffffff00
+            border: none
+            border-bottom: 1px solid $white
+            color: $white
+            padding: 5px 10px
+            font-size: 20px
+            margin-bottom: 80px
+            width: 100%
             text-align: center
-        .form
-            display: flex
-            justify-content: center
-            align-items: center
-            flex-direction: column
-            .Alerta
-                color: $red
-                margin-bottom: 10px
-            label
-                margin-bottom: 10px
-            input
-                border-radius: 5px
-                border: 1px solid $gray-500
-                padding: 5px 10px
-                margin-bottom: 10px
-            button
-                padding: 5px 15px
-                border-radius: 10px
-                border: 1px solid $gray-600
-                background-color: $gray-200
-                outline: none
-                &:hover
-                    background-color: $gray-300
+            outline: none
+            &::placeholder
+                color: $white
+        button
+            width: 100%
+            background-color: $white
+            border-radius: 5px
+            border: 1px solid #ffffff00
+            outline: none
+            font-size: 20px
+            padding: 10px
+            color: $P_DarkGreen
+            cursor: pointer
+            transition: .5s
+            &:hover
+                border: 1px solid $P_DarkGreen
 
 
 

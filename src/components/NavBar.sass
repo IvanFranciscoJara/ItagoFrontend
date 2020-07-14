@@ -1,0 +1,52 @@
+@import '../GlobalVars'
+.ContainerNavBar
+    position: relative
+    overflow: hidden
+    // background-color: $P_Green
+    background-color: $White
+    height: 100%
+    // clip-path: circle(25% at 27.5% 10px)
+    // .circle
+    //     background-color: $White
+    //     position: absolute        
+    //     height: 130px
+    //     width: 130px
+    //     border-radius: 50%
+    //     top: -70px
+    //     left: 27.5%
+    //     margin-left: -65px
+    //     z-index: 1
+    .BackGround,
+    .Hover
+        display: flex
+        justify-content: center
+        position: absolute
+        top: 0
+        bottom: 0 
+        height: 100%
+        width: 100%
+        background-color: #ffffff00
+        .Item 
+            z-index: 2
+            // border: 1px solid green
+            width: 45%
+            display: flex
+            justify-content: center
+            align-items: center
+            svg
+                height: 50px
+                width: 50px       
+    .BackGround
+        background-color: $P_Green
+        z-index: 1   
+        svg
+            fill: $white
+    .Hover
+        background-color: $White
+        z-index: 2
+        clip-path: circle(25% at 27.5% 10px)
+        transition: .5s 
+        svg
+            fill: $P_ShineGreen       
+        &.Move
+            clip-path: circle(25% at 72.5% 10px)        

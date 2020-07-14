@@ -17,19 +17,18 @@ const Welcome = props => {
   }
 
   return (
-    // <div className='ContenedorWelcome esconder'>
     <div className='ContenedorWelcome'>
-      <div className='FondoOscuro'></div>
       <div className='Contenido'>
-        <h1>Hi</h1>
-        <div className='form'>
-          <label>Enter a nick:</label>
-          <input id='nick' type='text' onKeyUp={EnterCerrar} />
-          <p className='Alerta'></p>
-          <button type='button' onClick={Cerrar}>
-            Go
-          </button>
-        </div>
+        <h1>HELLÖ</h1>
+        <p>
+          your first realtime <br />
+          messenger
+        </p>
+        <input id='nick' type='text' onKeyUp={EnterCerrar} placeholder='Type a nickname' />
+        <p className='Alerta'></p>
+        <button type='button' onClick={Cerrar}>
+          Go!
+        </button>
       </div>
     </div>
   )

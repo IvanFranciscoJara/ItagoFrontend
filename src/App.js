@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect, useReducer } from 'react'
+import './Global.sass'
 import './App.sass'
 import io from 'socket.io-client'
 import { v4 as uuidv4 } from 'uuid'
@@ -10,6 +11,7 @@ import CajaTexto from './components/CajaTexto'
 import CajaMensajes from './components/CajaMensajes'
 import Adjuntar from './components/Adjuntar'
 import apiRequest from './apiRequest'
+import NavBar from './components/NavBar'
 // console.log(process.env.TIPO)
 // console.log(process.env.GLOBAL_URL)
 console.log('de global url', GLOBAL_URL)
@@ -144,6 +146,7 @@ const reducer = (state, action) => {
       })
       console.log(NewConversaciones)
       return { ...state, Conversaciones: NewConversaciones }
+    // return state
     case 'InsertarMensajePropio':
       NewConversaciones = state.Conversaciones
       Index = NewConversaciones.findIndex(Usuario => Usuario.idUsuario === state.UsuarioActual)
@@ -202,11 +205,20 @@ const Contenido = props => {
   console.log('comenzando render')
   const [estado, dispatch] = useReducer(reducer, EstadopInicial)
   const [replyMessage, dispatchReplyMessage] = useReducer(reducerReplyMessage, {
+    // TIPO: 'RECIBIDO',
+    // USER: 'Hugo',
+    // HORAID: 'asdasdasd',
+    // MESSAGE: 'Hola como va todo?'
     TIPO: '',
     USER: '',
     HORAID: '',
     MESSAGE: ''
   })
+  const [contentActive, setContentActive] = useState(true)
+
+  const ChangeContent = () => {
+    setContentActive(!contentActive)
+  }
 
   // const [adjunto, dispatchAdjunto] = useReducer(reducerAdjunto, {
   //   adjunto: '',
@@ -328,54 +340,72 @@ const Contenido = props => {
       <Welcome Envia={EnviaNick} />
       <Adjuntar Muestra={Adjuntar.Muestra} EnviarMensaje={EnviarMensaje} />
       <div className='ContenedorApp'>
-        <div className={`FondoLateral ${Menu && 'Esconder'}`} onClick={CerrarMenu}></div>
-        <div className={`Perfil ${Menu && 'Esconder'}`}>
-          <p>{estado.DatosPropios.Usuario}</p>
+        <div className='Content'>
+          <div className={`Content__Contacts ${contentActive && 'Show'}`}>
+            <div className='Perfil'>
+              <p>HELLÖ, {estado.DatosPropios.Usuario}!</p>
+            </div>
+            <div className='UsuariosDisponibles'>
+              {estado.Conversaciones.map(Usuario => {
+                let Indexx = estado.Conversaciones.findIndex(Usua => Usua.idUsuario === Usuario.idUsuario)
+                let Mensajess = estado.Conversaciones[Indexx].Mensajes
+                let UltimoMensaje
+                if (Mensajess.length === 0) {
+                  UltimoMensaje = ''
+                } else {
+                  UltimoMensaje = Mensajess[Mensajess.length - 1].Mensaje
+                  if (UltimoMensaje.length > 40) {
+                    UltimoMensaje = UltimoMensaje.substring(0, 40) + '...'
+                  }
+                }
+                // console.log(Usuario, Usuario.idUsuario, estado.DatosPropios.idUsuario)
+                if (Usuario.idUsuario !== estado.DatosPropios.idUsuario) {
+                  return (
+                    <div
+                      className='Usuario'
+                      onClick={() => SeleccionarUsuario(Usuario.idUsuario)}
+                      key={Usuario.Usuario}
+                    >
+                      <div className='Izquierda'>
+                        <p className='Nombre'>{Usuario.Usuario}</p>
+                        <p className='UltimoMensaje'>{UltimoMensaje}</p>
+                      </div>
+                      <div className='Derecha'>
+                        <button>Online</button>
+                      </div>
+                    </div>
+                  )
+                }
+              })}
+            </div>
+          </div>
+          <div className={`Content__MessageBox ${!contentActive && 'Show'}`}>
+            <div className={`UsuarioActual`}>
+              {/* <IconMenu className='Menu' onClick={CerrarMenu} /> */}
+              {Index === -1 ? (
+                <p className='Elige'>Elige un usuario derecha para iniciar una conversación</p>
+              ) : (
+                <p className='Usuario'>{Conversacion.Usuario}</p>
+              )}
+            </div>
+            <div className={`Mensajes ${Index === -1 && 'intro'}`}>
+              <CajaMensajes Conversacion={Conversacion} Index={Index} Reply={Reply} />
+            </div>
+            <div className='CajaTexto'>
+              <CajaTexto
+                EnviarMensaje={EnviarMensaje}
+                replyMessage={replyMessage}
+                CancelReplyMessage={CancelReplyMessage}
+              />
+            </div>
+          </div>
         </div>
-        <div className={`UsuariosDisponibles ${Menu && 'Esconder'}`}>
-          {estado.Conversaciones.map(Usuario => {
-            let Indexx = estado.Conversaciones.findIndex(Usua => Usua.idUsuario === Usuario.idUsuario)
-            let Mensajess = estado.Conversaciones[Indexx].Mensajes
-            let UltimoMensaje
-            if (Mensajess.length === 0) {
-              UltimoMensaje = ''
-            } else {
-              UltimoMensaje = Mensajess[Mensajess.length - 1].Mensaje
-              if (UltimoMensaje.length > 40) {
-                UltimoMensaje = UltimoMensaje.substring(0, 40) + '...'
-              }
-            }
-            // console.log(Usuario, Usuario.idUsuario, estado.DatosPropios.idUsuario)
-            if (Usuario.idUsuario !== estado.DatosPropios.idUsuario) {
-              return (
-                <div className='Usuario' onClick={() => SeleccionarUsuario(Usuario.idUsuario)} key={Usuario.Usuario}>
-                  <p className='Nombre'>{Usuario.Usuario}</p>
-                  <p className='UltimoMensaje'>{UltimoMensaje}</p>
-                </div>
-              )
-            }
-          })}
+        <div className='NavBar'>
+          <NavBar click={ChangeContent} content={contentActive} />
+          {/* <button onClick={ChangeContent}>Change content</button> */}
         </div>
-        <div className={`UsuarioActual`}>
-          <IconMenu className='Menu' onClick={CerrarMenu} />
-          {Index === -1 ? (
-            'Elige un usuario derecha para iniciar una conversación'
-          ) : (
-            <>
-              Conversación con <strong>{Conversacion.Usuario}</strong>
-            </>
-          )}
-        </div>
-        <div className={`Mensajes ${Index === -1 && 'intro'}`}>
-          <CajaMensajes Conversacion={Conversacion} Index={Index} Reply={Reply} />
-        </div>
-        <div className='CajaTexto'>
-          <CajaTexto
-            EnviarMensaje={EnviarMensaje}
-            replyMessage={replyMessage}
-            CancelReplyMessage={CancelReplyMessage}
-          />
-        </div>
+
+        {/* <div className={`FondoLateral ${Menu && 'Esconder'}`} onClick={CerrarMenu}></div> */}
       </div>
     </React.Fragment>
   )
