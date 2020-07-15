@@ -39,6 +39,10 @@ module.exports = env => {
           {
             from: path.resolve(__dirname, 'src/imagenes'),
             to: path.resolve(__dirname, 'dist/imagenes')
+          },
+          {
+            from: path.resolve(__dirname, 'src/manifest.json'),
+            to: path.resolve(__dirname, 'dist/manifest.json')
           }
         ]
       })

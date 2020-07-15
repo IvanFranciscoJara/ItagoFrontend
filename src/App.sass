@@ -8,7 +8,8 @@
         display: flex          
         overflow: hidden              
         @media screen and (max-width: 800px)
-            height: calc(100vh - 70px)              
+            height: calc(var(--vh, 1vh) * 100 - 70px)
+            // height: calc(100vh - 70px)              
             // overflow: scroll                               
             .Content__Contacts     
                 width: 100vw              
@@ -72,11 +73,15 @@
                 background-color: $gray-200
             .Izquierda
                 width: 60%
+                display: flex
+                justify-content: center
+                align-items: left
+                flex-direction: column
                 .Nombre
                     color: $P_DarkGreen
                     font-weight: 500
                     font-size: $big   
-                    margin-bottom: 5px   
+                    // margin-bottom: 5px   
                 .UltimoMensaje
                     color: $P_Gray
             .Derecha
@@ -108,13 +113,14 @@
         p
             &.Elige
                 font-weight: 400
+                font-size: $small
             &.Usuario
                 font-weight: 500
     .Mensajes
-        height: calc(100vh - 60px - 80px)
+        height: calc(var(--vh, 1vh) * 100 - 60px - 80px)
         overflow-y: auto        
         @media screen and (max-width: 800px)
-            height: calc(100vh - 50px - 70px - 70px)
+            height: calc(var(--vh, 1vh) * 100 - 50px - 70px - 70px)
     .CajaTexto        
         // overflow: hidden
         height: 80px

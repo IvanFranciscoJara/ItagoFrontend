@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --env.TIPO=prod --progress --colors",
-    "test": "webpack-dev-server --env.TIPO=prod --progress --colors",
-    "dev": "webpack-dev-server --env.TIPO=local --progress --colors"
+    "test": "webpack-dev-server --env.TIPO=prod --progress --colors --host 0.0.0.0",
+    "dev": "webpack-dev-server --env.TIPO=local --progress --colors --host 0.0.0.0"
   },
   "author": "",
   "license": "ISC",

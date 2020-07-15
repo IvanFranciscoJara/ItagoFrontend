@@ -1,0 +1,8 @@
+{
+  "name": "Hello",
+  "short_name": "Hello",
+  "start_url": "./index.html",
+  "theme_color": "#BDE7E4",
+  "background_color": "#BDE7E4",
+  "display": "standalone"
+}

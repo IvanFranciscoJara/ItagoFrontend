@@ -277,10 +277,9 @@ const Contenido = props => {
   }
 
   const SeleccionarUsuario = idUsuario => {
-    console.log('hola')
     dispatch({ type: 'SeleccionoUsuarioConversar', idUsuario: idUsuario })
     EnviarVisto(idUsuario)
-    setMenu(!Menu)
+    setContentActive(!contentActive)
   }
 
   useEffect(() => {
@@ -383,7 +382,9 @@ const Contenido = props => {
             <div className={`UsuarioActual`}>
               {/* <IconMenu className='Menu' onClick={CerrarMenu} /> */}
               {Index === -1 ? (
-                <p className='Elige'>Elige un usuario derecha para iniciar una conversación</p>
+                <p className='Elige' onClick={ChangeContent}>
+                  Choose user to talk
+                </p>
               ) : (
                 <p className='Usuario'>{Conversacion.Usuario}</p>
               )}
