@@ -23,15 +23,13 @@
             color: $white
             font-size: 60px
             margin-bottom: 0px
-        p
+        .slogan
             font-size: 20px
             margin-bottom: 80px
             color: $white
             text-align: right
        
-        .Alerta
-            color: $red
-            margin-bottom: 10px
+        
     
         input
             background-color: #ffffff00
@@ -40,12 +38,24 @@
             color: $white
             padding: 5px 10px
             font-size: 20px
-            margin-bottom: 80px
+            margin-bottom: 10px
             width: 100%
             text-align: center
             outline: none
             &::placeholder
                 color: $white
+
+        .Alerta
+            color: #ffffff00
+            margin-bottom: 80px
+            text-align: center
+            transition: .5s
+            &.Red
+                color: $red
+            
+     
+            
+
         button
             width: 100%
             background-color: $white
@@ -59,6 +69,10 @@
             transition: .5s
             &:hover
                 border: 1px solid $P_DarkGreen
+            @media screen and (max-width: 800px)
+                &:hover
+                    border: 1px solid #ffffff00
+
 
 
 
