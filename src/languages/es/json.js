@@ -1,5 +1,0 @@
-{
-  welcome: {
-    slogan: 'Chats desechables'
-  }
-}
