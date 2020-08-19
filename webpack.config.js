@@ -13,7 +13,7 @@ module.exports = env => {
       filename: 'index_bundle.js',
       publicPath: '/'
     },
-    devtool: '#eval-source-map',
+    devtool: env.TIPO === 'local' ? 'source-map' : 'eval',
     devServer: {
       port: 9000,
       historyApiFallback: true
@@ -31,7 +31,7 @@ module.exports = env => {
         { test: /\.(gif|svg|jpg|png)$/, loader: 'file-loader' }
       ]
     },
-    mode: 'development',
+    mode: env.TIPO === 'local' ? 'development' : 'production',
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html'
@@ -41,10 +41,6 @@ module.exports = env => {
       }),
       new CopyPlugin({
         patterns: [
-          // {
-          //   from: path.resolve(__dirname, 'src/imagenes'),
-          //   to: path.resolve(__dirname, 'dist/imagenes')
-          // },
           {
             from: path.resolve(__dirname, 'src/manifest.json'),
             to: path.resolve(__dirname, 'dist/manifest.json')
