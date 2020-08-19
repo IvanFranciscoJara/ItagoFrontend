@@ -21,9 +21,6 @@ const CajaTexto = props => {
         </div>
       </div>
       <div className='Mensaje'>
-        {/* <label className='Mensaje__Attach' htmlFor='TheInput'>
-          <IconAttach />
-        </label> */}
         <div className='Mensaje__Input'>
           <input
             id='Texto'
@@ -34,18 +31,12 @@ const CajaTexto = props => {
             placeholder='Your Message ...'
           />
         </div>
-
         <label className='Mensaje__Attach' htmlFor='TheInput'>
           <P_IconClip />
         </label>
         <label className='Mensaje__Send' onClick={() => props.EnviarMensaje()}>
           <P_IconSend />
         </label>
-        {/* <div className='Mensaje__Boton'>
-          <button onClick={() => props.EnviarMensaje()}>
-            <IconSend />
-          </button>
-        </div> */}
       </div>
     </div>
   )

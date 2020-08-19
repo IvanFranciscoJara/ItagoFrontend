@@ -1,0 +1,112 @@
+@import '../../../../GlobalVars'
+    
+.ContainerCreateLink
+    height: 100%
+    width: 100%
+    display: flex
+    justify-content: center    
+    flex-direction: column
+    align-items: center
+    // border: 1px solid red
+    .Contenedor    
+        &__parrafo
+            max-height: 0
+            overflow: hidden
+            transition: .2s
+            &.Show
+                max-height: 100px   
+        &__Title
+            color: $F_DarkGreen
+            margin-bottom: 30px  
+            font-weight: bold      
+        &__PickTime
+            width: 100%
+            margin-top: 20px
+            position: relative   
+            width: 100%        
+            display: flex
+            justify-content: center  
+            max-height: 0
+            overflow: hidden
+            transition: .2s
+            &.Show
+                max-height: 500px   
+            .PickTime_Line
+                position: absolute
+                top: 20px
+                width: calc((100% - 60px) * 0.75) // revisar si esto esta correcto
+                height: 2px
+                background-color: $gray-300
+                z-index: 0
+            .PickTime_Circle
+                z-index: 2
+                position: absolute
+                top: 10px
+                left: calc(30px + (100% - 60px) / 8 - 10px)
+                // left: 0
+                height: 20px
+                width: 20px
+                border-radius: 10px
+                background-color: $F_Green
+            .PickTime_Times
+                z-index: 1
+                position: relative
+                padding: 0 30px
+                display: flex
+                justify-content: center
+                align-items: center
+                // border: 1px solid red
+                width: 100%
+                .time                
+                    flex: 1
+                    // border: 1px solid green
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    flex-direction: column
+                    padding: 10px 0
+                    &-circle,                
+                    &-name
+                        // border: 1px solid purple
+                    &-circle
+                        height: 20px
+                        width: 20px
+                        border-radius: 10px
+                        background-color: $gray-300
+                    &-name
+                        margin-top: 5px
+        &__Button
+            max-height: 0
+            overflow: hidden
+            transition: .2s
+            margin-top: 0px
+            &.Show
+                margin-top: 30px
+                max-height: 500px
+        &__Link
+            margin-top: 20px
+            display: flex
+            justify-content: center
+            align-items: center
+            flex-direction: column
+            max-height: 0
+            overflow: hidden
+            transition: .2s
+            &.Show
+                max-height: 500px
+            p
+                margin-bottom: 15px
+            input
+                width: 100%
+                padding: 5px
+            button
+                margin-top: 20px
+                display: flex
+                justify-content: center
+                align-items: center
+                svg
+                    margin-left: 10px
+                    height: 15px
+                    width: 15px
+
+

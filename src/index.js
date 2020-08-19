@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 // import './index.sass'
-import App from './App.js'
-import NewApp from './NewApp.js'
-
+import ReactRouter from './ReactRouter.js'
+import './i18next-config'
 // class App extends React.Component {
 //   render() {
 //     return <Contenido />
@@ -18,4 +17,4 @@ window.addEventListener('resize', () => {
   document.documentElement.style.setProperty('--vh', `${vh}px`)
 })
 
-ReactDom.render(<App />, document.getElementById('app'))
+ReactDom.render(<ReactRouter />, document.getElementById('app'))

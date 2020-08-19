@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap')
+// @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&display=swap')
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;700&display=swap')
+
 @import './GlobalVars'
 
 
@@ -7,9 +10,31 @@
     box-sizing: border-box
     margin: 0
     padding: 0
-    font-family: 'Rubik', sans-serif
+    font-family: 'Open Sans', sans-serif
     user-select: none
 a
     text-decoration: none
 h1,h2,h3,h4
+    font-family: 'Poppins', sans-serif
     font-weight: normal
+.btn
+    border: 1px solid $F_Green
+    // border: 1px solid $black
+    padding: 5px 10px
+    background-color: $White    
+    outline: none
+    color: $F_Green
+    transition: .3s
+    &:hover        
+        background-color: $F_SoftGray      
+        cursor: pointer
+input        
+    background-color: #ffffff00
+    border: none
+    border-bottom: 2px solid $F_DarkGreen
+    color: $F_DarkGreen                
+    width: 100%    
+    outline: none
+    &::placeholder
+        color: $F_DarkGreen 
+

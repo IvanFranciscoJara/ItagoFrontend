@@ -1,0 +1,71 @@
+@import '../../../GlobalVars'
+
+.ChatRoomsContainer    
+    width: 100%
+    height: 100%    
+    &__Title
+        width: 100%
+        display: flex
+        height: 70px            
+        // border-bottom: 1px solid $gray-600
+        background-color: $F_SoftGreen
+        div
+            display: flex
+            align-items: center
+        &-Back
+            justify-content: center                
+            width: 20%
+            cursor: pointer
+            svg                
+                height: 40%    
+                transition: 2s
+                color: $F_Green
+            &:hover
+                svg
+                    transform: rotate(360deg)
+                    color: $F_DarkGreen
+        &-Title
+            justify-content: flex-start                
+            width: 80%  
+            font-size: $big
+            color: $F_Green
+            strong
+                margin-left: 10px
+            
+            // font-weight: bold
+               
+    &__ChatRooms
+        width: 100%
+        // background-color: red
+        .ChatRoom
+            border-bottom: 1px solid $F_Green
+            padding: 10px 25px
+            text-align: left
+            transition: .2s
+            color: $F_Green
+            
+            &:hover
+                background-color: $gray-300
+                cursor: pointer            
+            &__LastMessage
+                font-size: 13px
+
+        .ButtonCreateChatRoom
+            position: relative            
+            width: 100%
+            padding: 5px            
+            button                
+                width: 100%
+                height: 40px
+                font-size: 17px            
+        .NoChatRooms
+            height: 50vh
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 80px
+            text-align: center
+            svg
+                height: 20px
+                width: 20px
+                border: 1px solid red

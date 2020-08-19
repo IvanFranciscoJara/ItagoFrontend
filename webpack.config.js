@@ -2,6 +2,7 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = env => {
   console.log('TIPO', env.TIPO)
@@ -9,11 +10,15 @@ module.exports = env => {
     entry: './src/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: 'index_bundle.js'
+      filename: 'index_bundle.js',
+      publicPath: '/'
     },
     devtool: '#eval-source-map',
     devServer: {
-      port: 9000
+      port: 9000,
+      historyApiFallback: true
+      // contentBase: './',
+      // hot: true
     },
     node: {
       fs: 'empty'
@@ -32,14 +37,14 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:8080/' : 'https://ivanf.net/')
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:3000/' : 'https://ivanf.net/')
       }),
       new CopyPlugin({
         patterns: [
-          {
-            from: path.resolve(__dirname, 'src/imagenes'),
-            to: path.resolve(__dirname, 'dist/imagenes')
-          },
+          // {
+          //   from: path.resolve(__dirname, 'src/imagenes'),
+          //   to: path.resolve(__dirname, 'dist/imagenes')
+          // },
           {
             from: path.resolve(__dirname, 'src/manifest.json'),
             to: path.resolve(__dirname, 'dist/manifest.json')

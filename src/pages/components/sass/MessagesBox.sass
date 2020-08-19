@@ -1,0 +1,228 @@
+@import '../../../GlobalVars'
+
+.ContainerMessagesBox    
+    height: 100%
+    // border: 1px solid green
+    // width: 30%
+    &__NoMessage
+        // width: 50%
+        // border: 1px solid red        
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 100%
+    &__Title
+        height: 50px
+        display: flex        
+        div
+            flex: 1            
+            height: 100%
+            display: flex            
+            align-items: center
+        .title
+            flex: 5        
+            font-weight: bold
+            justify-content: flex-start
+            padding: 0 25px
+            color: $F_Green
+        .button
+            flex: 1
+            height: 100%
+            display: flex      
+            justify-content: center      
+            align-items: center
+            svg
+                height: 50%    
+                color: $F_Green
+            &:hover
+                cursor: pointer
+                svg
+                    color: $gray-600
+                    color: $F_DarkGreen
+
+        
+    &__Messages
+        height: calc(100% - 100px)
+        overflow-y: auto        
+        background-color: $P_SoftGray
+        &.padding
+            padding-bottom: 70px
+        &::-webkit-scrollbar 
+            width: 5px
+        &::-webkit-scrollbar-thumb
+            background-color: $gray-500
+            opacity: 0.9
+        &__Item            
+            padding: 5px 
+            &.transition-enter
+                opacity: 0.01
+                transform: translate(0, -10px)
+            &.transition-enter-active
+                opacity: 1
+                transform: translate(0, 0)
+                transition: all 300ms ease-in
+            &.transition-exit
+                opacity: 1
+                transform: translate(0, 0)
+            &.transition-exit-active
+                opacity: 0.01
+                transform: translate(0, 10px)
+                transition: all 300ms ease-in
+            &__Container                
+                display: flex                
+                align-items: flex-end
+                // border: 1px solid red
+                position: relative   
+                &:hover
+                    .Item__Container__ReplyButton
+                        opacity: 1
+                &.center
+                    justify-content: center
+                &.left
+                    justify-content: flex-end
+                    flex-direction: row-reverse
+                &.right
+                    justify-content: flex-end               
+                .Item__Container__ReplyButton                                                                  
+                    border: 1px solid $P_Gray
+                    color: $P_Gray
+                    padding: 3px 5px
+                    transition: .2s
+                    cursor: pointer
+                    opacity: 0       
+                    margin: 0 10px
+                    &:hover
+                        border: 1px solid $P_Gray
+                        background-color: $P_Gray
+                        color: $White
+                        border-radius: 20px
+                .Item__Container__Message            
+                    padding: 7px                             
+                    &.left
+                        background-color: $P_Green
+                    &.right
+                        background-color: $white                        
+                    .from
+                        font-weight: bold
+                        font-size: 12px
+                    span
+                        font-size: 12px
+                        margin-left: 10px
+                    .reply                        
+                        background-color: $gray-200                              
+                        padding: 5px
+                        margin-bottom: 10px
+                        p:nth-child(1)
+                            font-size: 10px 
+                            font-weight: bold
+                        p:nth-child(2)
+                            font-size: 12px                             
+
+                .Item__Container__Event
+                    padding: 5px                    
+                    font-size: 10px
+                    background-color: $gray-500
+                    color: $white
+    &__BoxWriteMessage
+        height: 50px
+        display: flex
+        justify-content: center
+        align-items: center
+        // flex-direction: column
+        background-color: $gray-300
+        position: relative
+        .ReplyMessage
+            position: absolute
+            top: -70px
+            width: 100%
+            // border: 1px solid red
+            height: 70px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: 0 10px
+            background-color: $gray-200
+            border-bottom: 1px solid $gray-400
+            transition: 0.2s
+            &.hide
+                top: 0
+                height: 0    
+                border-bottom: 0px solid $gray-400
+                svg
+                    display: none  
+            &__Content
+                background-color: $white                
+                display: flex
+                justify-content: center            
+                flex-direction: column                                   
+                padding: 0 15px
+                height: calc(100% - 20px)            
+                width: 80%               
+                p:nth-child(1)                
+                    // color: $P_DarkGreen
+                    color: $black
+                    font-weight: bold
+                // p:nth-child(2)           
+            &__Equis
+                // border: 1px solid blue
+                display: flex
+                justify-content: center
+                align-items: center     
+                width: 20%
+                height: 100%
+                &:hover 
+                    cursor: pointer
+                svg
+                    height: 20px
+                    width: 20px
+                    color: $gray-600
+        .WriteMessage
+            height: 70%
+            width: 100%                       
+            background-color: $White
+            display: flex
+            justify-content: center
+            align-items: center 
+            label,
+            div           
+                display: flex
+                justify-content: center
+                align-items: center
+            .WriteMessage__Input
+                width: calc(100% - 54px - 54px)                
+                height: 100%
+                // border: 1px solid red
+                @media screen and (max-width: 800px)
+                    width: calc(100% - 47px - 47px)
+                input
+                    padding: 5px 15px
+                    font-size: 18px
+            .WriteMessage__Attach,
+            .WriteMessage__Send       
+                cursor: pointer                 
+                width: 54px
+                height: 100%
+                @media screen and (max-width: 800px)
+                    width: 47px
+                &:hover
+                    // border: 1px solid red
+                    svg
+                        fill: $P_ShineGreen
+                svg
+                    width: 30px
+                    height: 30px
+                    fill: $P_DarkGreen        
+            input                
+                background-color: #ffffff00
+                border: none
+                // border-bottom: 1px solid $white
+                color: $P_DarkGreen
+                padding: 20px
+                font-size: 18px                
+                width: 100%
+                text-align: left
+                outline: none       
+                &::placeholder
+                    color: $P_OtherSoftGray
+            
+            

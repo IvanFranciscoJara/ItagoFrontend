@@ -1,0 +1,80 @@
+@import '../../GlobalVars'
+.ContenedorWelcome  
+    z-index: 10
+    position: fixed
+    top: 0
+    left: 0
+    height: 100vh
+    width: 100vw
+    transition: 1s
+    background-color: $P_Green
+    display: flex
+    justify-content: center
+    align-items: center
+    &.esconder
+        transform: translateY(-100%)
+   
+    .Contenido    
+        width: 30%            
+        display: flex
+        justify-content: center
+        flex-direction: column     
+        align-items: center   
+        @media screen and (max-width: 800px)
+            width: 70%
+        svg
+            fill: $F_DarkGreen
+            height: 100px
+            width: 100px
+            // border: 1px solid red
+            #bb,
+            #cc
+                animation: animacuadrado 3s ease 0s infinite
+            @keyframes animacuadrado 
+                0%
+                    fill: $F_DarkGreen
+                20%
+                    fill: $F_SoftGreen
+                25%
+                    fill: $F_DarkGreen
+                30%
+                    fill: $F_SoftGreen
+                35%
+                    fill: $White
+                100%
+                    fill: $F_DarkGreen
+        h1            
+            color: $white
+            font-size: 70px
+            margin-bottom: 0px
+            font-weight: lighter
+            color: $F_Green            
+        .slogan
+            font-size: 20px
+            margin-bottom: 80px
+            color: $F_DarkGreen                                      
+
+        .Alerta
+            color: #ffffff00
+            margin-bottom: 80px
+            text-align: center
+            transition: .5s
+            &.Red
+                color: $red      
+        input
+            font-size: 20px
+            padding: 5px 10px    
+            margin-bottom: 10px
+            text-align: center
+        button
+            width: 100%        
+            font-size: 20px
+            padding: 10px            
+
+
+
+
+
+
+    
+

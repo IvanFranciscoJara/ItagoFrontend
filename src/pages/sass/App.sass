@@ -1,0 +1,64 @@
+@import '../../GlobalVars'
+
+.ContenedorApp
+    // border: 3px solid red
+    width: 100%
+    height: 100vh
+    display: flex       
+    overflow: hidden
+    position: relative
+    
+    // div
+    //     text-align: center
+    .Settings,
+    .ChatRooms,
+    .MessagesBox
+        background-color: $White
+        position: absolute
+        height: 100vh
+        transition: .5s ease
+    .Settings
+        z-index: 1
+        border-right: 1px solid $F_DarkGreen       
+        width: 30%               
+        left: -30%        
+        &.Show
+            left: 0%    
+    .ChatRooms        
+        width: 30%
+        border-right: 1px solid $F_SoftGreen
+        background-color: $White        
+    .MessagesBox        
+        left: 30%
+        width: 70%
+        &.Show
+            z-index: 2        
+    @media screen and (max-width: 800px)        
+        .Settings
+            width: 100%           
+            left: -100%
+            top: 0
+            
+            &.Show
+                left: 0
+        .ChatRooms
+            width: 100%           
+            left: -100%
+            top: 0
+            border-right: 0px
+            &.Show
+                left: 0
+        .MessagesBox
+            width: 100%           
+            left: 100%
+            top: 0
+            &.Show
+                left: 0
+    
+
+
+
+
+    
+
+

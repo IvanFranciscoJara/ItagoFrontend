@@ -1,0 +1,78 @@
+@import '../../../GlobalVars'
+
+.ContainerCreateChatRooms
+  // border: 1px solid green
+  // transition: background-color 1s ease
+  position: fixed  
+  top: -100vh
+  left: 0
+  width: 100vw
+  height: 100vh
+  z-index: 10
+  transition: .2s
+  &.muestra        
+    top: 0
+    .FondoOscuro            
+      // background-color: #00000077
+  .FondoOscuro
+    // border: 1px solid red
+    position: absolute
+    top: 0
+    left: 0        
+    width: 100%
+    height: 100%
+    z-index: 1
+    // background-color: $white    
+    transition: background-color 1s ease
+  .Contenedor    
+    z-index: 2
+    border: 1px solid $gray-800    
+    position: absolute
+    top: 15%
+    left: 30%
+    height: 70%
+    width: 40%
+    background-color: $White
+    padding: 30px
+    display: flex
+    justify-content: center
+    align-items: flex-start
+    flex-direction: column
+    @media screen and (max-width: 800px)
+      left: 5%
+      width: 90%
+    &__Equis
+      position: absolute      
+      top: 0px
+      right: 0px
+      height: 50px
+      width: 50px
+      // border: 1px solid red
+      display: flex
+      justify-content: center
+      align-items: center      
+      svg
+        height: 80%
+        width: 80%
+    &__Title
+      margin-bottom: 30px 
+      text-align: left
+      font-weight: bold
+    label
+      margin: 20px 0 10px 0 
+    &__Theinput
+      width: 100%
+      display: flex
+      justify-content: center
+      align-items: center
+      // border: 1px solid black
+      input
+        flex: 3
+        // border: 1px solid red
+      span
+        flex: 1
+        // border: 1px solid green
+    &__Button      
+      margin: 30px auto 0 auto
+      font-size: $big
+
