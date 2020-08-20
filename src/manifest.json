@@ -1,7 +1,7 @@
 {
   "name": "Itago",
   "short_name": "Itago",
-  "start_url": "/",
+  "start_url": "/Welcome",
   "icons": [
     {
       "src": "imagenes/android-chrome-192x192.png",

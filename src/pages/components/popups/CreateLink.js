@@ -6,6 +6,7 @@ import './sass/CreateLink.sass'
 import { P_IconCopy } from '../../../icons'
 import { useTranslation } from 'react-i18next'
 const CreateLink = ({ open, idChatroom }) => {
+  let Api = GLOBAL_URL
   const { t } = useTranslation()
   const times = [
     {
@@ -89,7 +90,15 @@ const CreateLink = ({ open, idChatroom }) => {
         </div>
         <div className={`Contenedor__Link ${link !== '' && 'Show'}`}>
           <p>This link expire in {times[indexTime.index].name} minutes</p>
-          <input id='link' value={`localhost:9000/Welcome/${link}`} readOnly />
+          <input
+            id='link'
+            value={`${
+              GLOBAL_URL === 'http://localhost:8080/'
+                ? 'http://localhost:8080/'
+                : 'https://master.drf12jlginq43.amplifyapp.com/'
+            }Welcome/${link}`}
+            readOnly
+          />
           <button className='btn' onClick={toClipboard}>
             <P_IconCopy /> Copy to clip path
           </button>

@@ -130,15 +130,18 @@ const App = props => {
   }, [user]) // importa el orden de los useEffect 😅
   useEffect(() => {
     var welcome = Location.pathname.substr(0, 8)
+    var slash = Location.pathname.substr(8, 1)
     var path = Location.pathname.substr(9, 500)
     console.log(path)
     if (localStorage.getItem('token') === null) {
-      if (welcome === '/Welcome') {
+      console.log(path, slash)
+      if (welcome === '/Welcome' && slash === '/') {
         history.push(Location.pathname)
       } else {
         history.push('/Welcome')
       }
     } else {
+      console.log(path)
       socket.emit('registro', localStorage.getItem('token'))
       if (welcome === '/Welcome') {
         console.log('unete a:', path)
@@ -147,6 +150,7 @@ const App = props => {
           await ActualizandoData(respuesta)
         }
         joinChatRoom()
+        history.push('/')
       } else {
         history.push('/')
       }

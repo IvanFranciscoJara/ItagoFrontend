@@ -29,10 +29,7 @@ const CreateChatRoom = ({ open, CreateChatRoom }) => {
           <br />
           {t('CreateChatRoom.title2')}
         </h2>
-        <label>
-          {t('CreateChatRoom.name')}
-          {/* Name of Chat Room: */}
-        </label>
+        <label htmlFor='name'>{t('CreateChatRoom.name')}</label>
         <div className='Contenedor__Theinput'>
           <input
             id='name'
@@ -41,12 +38,8 @@ const CreateChatRoom = ({ open, CreateChatRoom }) => {
             value={state.name}
             onChange={e => HandleChange(e)}
           />
-          {/* <span>Random</span> */}
         </div>
-        <label>
-          {t('CreateChatRoom.description')}
-          {/* Description of Chat Room: (optional) */}
-        </label>
+        <label htmlFor='description'>{t('CreateChatRoom.description')}</label>
         <div className='Contenedor__Theinput'>
           <input
             id='description'
