@@ -15,7 +15,7 @@ const Welcome = ({ Registrarse, open, codigo }) => {
 
       var anim = Alert.animate(
         [
-          { transform: 'translate3d(-1px, 0, 0)' },
+          { transform: 'translate3d(-1px, 0, 0)', offset: 0 },
           { transform: 'translate3d(2px, 0, 0)', offset: 0.2 },
           { transform: 'translate3d(-4px, 0, 0)', offset: 0.3 },
           { transform: 'translate3d(4px, 0, 0)', offset: 0.4 },
@@ -23,7 +23,7 @@ const Welcome = ({ Registrarse, open, codigo }) => {
           { transform: 'translate3d(4px, 0, 0)', offset: 0.6 },
           { transform: 'translate3d(-4px, 0, 0)', offset: 0.7 },
           { transform: 'translate3d(2px, 0, 0)', offset: 0.8 },
-          { transform: 'translate3d(-1px, 0, 0)' }
+          { transform: 'translate3d(-1px, 0, 0)', offset: 1 }
         ],
         // [{ transform: 'translate3d(-1px, 0, 0)' }, { transform: 'translate3d(2px, 0, 0)' }],
         {
