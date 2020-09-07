@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 // import './index.sass'
 import ReactRouter from './ReactRouter.js'
-import './i18next-config'
+import './Global/i18next-config'
 // class App extends React.Component {
 //   render() {
 //     return <Contenido />

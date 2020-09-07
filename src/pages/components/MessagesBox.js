@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './sass/MessagesBox.sass'
-import { P_IconClip, P_IconSend, IconEquis, IconDoubleCheck, P_IconShare, P_IconOut, P_Back } from '../../icons'
-import apiRequest from '../../apiRequest'
+import { P_IconClip, P_IconSend, IconEquis, IconDoubleCheck, P_IconShare, P_IconOut, P_Back } from '../../Global/icons'
+import apiRequest from '../../Global/apiRequest'
 import { format } from 'date-fns'
 import { Route, Link, useHistory, useLocation } from 'react-router-dom'
 import CreateLink from './popups/CreateLink'
@@ -114,14 +114,14 @@ const MessagesBox = ({ closeMessageBox, show, conversation, EnviaMensaje, EnviaV
       ) : (
         <React.Fragment>
           <div className='ContainerMessagesBox__Title'>
-            <div className='button' onClick={closeMessageBox}>
+            <div className='button' onClick={closeMessageBox} title={t('MessagesBox.title_back')}>
               <P_Back />
             </div>
             <div className='title'>{conversation.name}</div>
-            <div className='button' onClick={OpenCreateLink}>
+            <div className='button' onClick={OpenCreateLink} title={t('MessagesBox.title_share')}>
               <P_IconShare />
             </div>
-            <div className='button' onClick={LeaveGroup}>
+            <div className='button' onClick={LeaveGroup} title={t('MessagesBox.title_leave')}>
               <P_IconOut />
             </div>
           </div>

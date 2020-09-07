@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './sass/ChatRooms.sass'
 import CompCreateChatRoom from './popups/CreateChatRoom.js'
 import { Route, Link, useHistory, useLocation } from 'react-router-dom'
-import { IconEquis, P_Setting } from '../../icons'
+import { IconEquis, P_Setting } from '../../Global/icons'
 import { useTranslation } from 'react-i18next'
 
 const ChatRooms = ({ ChatRooms, CambiaChatActual, CreateChatRoom, OpenSettings }) => {
@@ -11,8 +11,12 @@ const ChatRooms = ({ ChatRooms, CambiaChatActual, CreateChatRoom, OpenSettings }
   const history = useHistory()
   // console.log(ChatRooms, Location)
   const ButtonCreateChatRoom = () => {}
+  const [loading, setLoading] = useState(true)
   const OpenCreateChatRoom = () => {
     history.push('./createChatRoom')
+  }
+  const ChangeState = () => {
+    setLoading(!loading)
   }
   // ChatRooms.length !== 0 && console.log(ChatRooms[0].chat[ChatRooms[0].chat.length])
   return (
@@ -43,7 +47,9 @@ const ChatRooms = ({ ChatRooms, CambiaChatActual, CreateChatRoom, OpenSettings }
           ))}
         <div className='ButtonCreateChatRoom' onClick={OpenCreateChatRoom}>
           <button className='btn'>{t('ChatRooms.create_chat_room')}</button>
+          {/* <Loader text={t('ChatRooms.create_chat_room')} state={loading} /> */}
         </div>
+        {/* <button onClick={ChangeState}>change</button> */}
         {ChatRooms.length === 0 && (
           <div className='NoChatRooms'>
             {t('ChatRooms.no_chat_room')}

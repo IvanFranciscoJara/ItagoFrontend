@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import './sass/Settings.sass'
 // import { Route, Link, useHistory, useLocation } from 'react-router-dom'
-import { P_Back } from '../../icons'
+import { P_Back } from '../../Global/icons'
 // import LogOutConfirmation from './popups/LogOutConfirmation'
 import { useTranslation } from 'react-i18next'
 

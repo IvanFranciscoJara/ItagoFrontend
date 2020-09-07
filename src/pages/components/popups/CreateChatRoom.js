@@ -3,19 +3,26 @@ import './sass/CreateChatRoom.sass'
 import { useHistory } from 'react-router-dom'
 import Popup from './Popup'
 import { useTranslation } from 'react-i18next'
+import Loader from '../Loader'
 
 const CreateChatRoom = ({ open, CreateChatRoom }) => {
   const { t } = useTranslation()
   const history = useHistory()
   const [state, setState] = useState({ name: '', description: '' })
+  const [loading, setLoading] = useState(false)
   const close = () => {
     history.goBack()
   }
 
   const HandlerCreateChatRoom = async () => {
-    CreateChatRoom(state)
-    // let respuesta = await apiRequest('chatRooms/createChatRoom', { state }, 'POST')
-    // console.log(respuesta)
+    if (state.name === '') {
+      alert(t('CreateChatRoom.alert'))
+      return
+    }
+    setLoading(true)
+    await CreateChatRoom(state)
+    setState({ name: '', description: '' })
+    setLoading(false)
   }
 
   const HandleChange = e => {
@@ -49,10 +56,15 @@ const CreateChatRoom = ({ open, CreateChatRoom }) => {
             onChange={e => HandleChange(e)}
           />
         </div>
-        <button className='btn blue Contenedor__Button' onClick={HandlerCreateChatRoom}>
-          {t('CreateChatRoom.create')}
-          {/* Create */}
-        </button>
+        <Loader
+          text={t('CreateChatRoom.create')}
+          state={loading}
+          className='Contenedor__Button'
+          onClick={HandlerCreateChatRoom}
+        />
+        {/* <button className='btn blue Contenedor__Button' onClick={HandlerCreateChatRoom}>
+          {t('CreateChatRoom.create')}          
+        </button> */}
       </div>
     </Popup>
   )

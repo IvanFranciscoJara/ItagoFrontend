@@ -42,12 +42,14 @@
                 z-index: 2
                 position: absolute
                 top: 10px
-                left: calc(30px + (100% - 60px) / 8 - 10px)
+                // left: calc(30px + (100% - 60px) / 8 - 10px)
                 // left: 0
                 height: 20px
                 width: 20px
                 border-radius: 10px
                 background-color: $F_Green
+                // @media screen and (max-width: 800px)
+                //     left: calc(0px + (100% - 20px) / 8 - 10px)
             .PickTime_Times
                 z-index: 1
                 position: relative
@@ -57,6 +59,8 @@
                 align-items: center
                 // border: 1px solid red
                 width: 100%
+                @media screen and (max-width: 800px)
+                    padding: 0 10px 
                 .time                
                     flex: 1
                     // border: 1px solid green
@@ -65,9 +69,12 @@
                     align-items: center
                     flex-direction: column
                     padding: 10px 0
-                    &-circle,                
-                    &-name
-                        // border: 1px solid purple
+                    height: 100%
+                    width: 100
+                    // &-circle,                
+                    // &-name
+
+                    //     // border: 1px solid purple
                     &-circle
                         height: 20px
                         width: 20px
@@ -75,9 +82,11 @@
                         background-color: $gray-300
                     &-name
                         margin-top: 5px
+                        text-align: center
         &__Button
             max-height: 0
             overflow: hidden
+
             transition: .2s
             margin-top: 0px
             &.Show

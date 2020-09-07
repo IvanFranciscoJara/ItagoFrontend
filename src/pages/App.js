@@ -1,11 +1,17 @@
-import React, { useState, useReducer, useEffect } from 'react'
+import React, { useState, useReducer, useEffect, Suspense, lazy } from 'react'
 import './sass/App.sass'
 import io from 'socket.io-client'
 import Welcome from './Welcome'
-import apiRequest from '../apiRequest'
-import ChatRooms from './components/ChatRooms'
-import MessagesBox from './components/MessagesBox'
-import Settings from './components/Settings'
+// import ChatRooms from './components/ChatRooms'
+const ChatRooms = lazy(() => import('./components/ChatRooms'))
+
+const MessagesBox = lazy(() => import('./components/MessagesBox'))
+const Settings = lazy(() => import('./components/Settings'))
+
+// import MessagesBox from './components/MessagesBox'
+// import Settings from './components/Settings'
+import apiRequest from '../Global/apiRequest'
+
 import { Route, Link, useHistory, useLocation, Switch } from 'react-router-dom'
 
 const URL = GLOBAL_URL
@@ -46,6 +52,12 @@ const App = props => {
 
   const Registrarse = async (name, code) => {
     let respuesta = await apiRequest('register/register', { name, code }, 'POST')
+
+    if (respuesta.message !== 'Ok') {
+      alert(respuesta.message)
+      return
+    }
+
     localStorage.setItem('name', respuesta.name)
     localStorage.setItem('token', respuesta.token)
     localStorage.setItem('public_key', respuesta.PUBLIC_KEY)
@@ -97,7 +109,12 @@ const App = props => {
   }
   const logOut = async deleteMessages => {
     console.log(deleteMessages)
-    let respuesta = await apiRequest('chatRooms/logOut', { deleteMessages }, 'POST')
+    let respuesta
+    try {
+      respuesta = await apiRequest('chatRooms/logOut', { deleteMessages }, 'POST')
+    } catch (error) {
+      console.log(error)
+    }
     console.log(respuesta)
     // if {respuesta === 'ok'}
     let name = localStorage.getItem('name')
@@ -148,6 +165,7 @@ const App = props => {
         const joinChatRoom = async () => {
           let respuesta = await apiRequest('chatRooms/joinChatRoom', { code: path }, 'POST')
           await ActualizandoData(respuesta)
+          location.reload()
         }
         joinChatRoom()
         history.push('/')
@@ -172,8 +190,8 @@ const App = props => {
 
   console.log('Estados actuales', view, chatActual, chatRooms)
   return (
+    // <Suspense fallback={<div>Loading :DDD</div>}>
     <div className='ContenedorApp'>
-      {/* <Switch> */}
       <Route
         path={'/Welcome/:codigo([A-Za-z0-9]+)?'}
         children={({ match }) => {
@@ -184,55 +202,61 @@ const App = props => {
       />
       {/* </Switch> */}
 
-      <Route
-        path={'/Settings'}
-        children={({ match }) => {
-          // console.log(Boolean(match), match, match?.params.codigo, Location)
-          return (
-            //  <div className={`MessagesBox ${Boolean(match) && 'Show'}`}>
-            <div className={`Settings ${Boolean(match) && 'Show'}`}>
-              <Settings logOut={logOut} />
-            </div>
-            // </div>
-          )
-          // <CreateChatRoom open={Boolean(match)} />
-        }}
-      />
-
-      <div
-        className={`ChatRooms ${
-          Location.pathname === '/' || Location.pathname === '/createChatRoom' || Location.pathname === '/Settings'
-            ? 'Show'
-            : ''
-        }`}
-      >
-        <ChatRooms
-          ChatRooms={chatRooms}
-          CambiaChatActual={CambiaChatActual}
-          CreateChatRoom={CreateChatRoom}
-          OpenSettings={() => history.push('/Settings')}
+      <Suspense fallback={<div>Loading :DDD</div>}>
+        <Route
+          path={'/Settings'}
+          children={({ match }) => {
+            // console.log(Boolean(match), match, match?.params.codigo, Location)
+            return (
+              //  <div className={`MessagesBox ${Boolean(match) && 'Show'}`}>
+              <div className={`Settings ${Boolean(match) && 'Show'}`}>
+                <Settings logOut={logOut} />
+              </div>
+              // </div>
+            )
+            // <CreateChatRoom open={Boolean(match)} />
+          }}
         />
-      </div>
-      <Route
-        path={'/messagesBox'}
-        children={({ match }) => {
-          console.log(Boolean(match), '/createChatRoom')
-          return (
-            <div className={`MessagesBox ${view === 'MessagesBox' && Boolean(match) ? 'Show' : null}`}>
-              <MessagesBox
-                closeMessageBox={closeMessageBox}
-                show={Boolean(match)}
-                conversation={chatActual}
-                EnviaMensaje={EnviaMensaje}
-                EnviaVisto={EnviaVisto}
-                LeaveChatRoom={LeaveChatRoom}
-              />
-            </div>
-          )
-          // <CreateChatRoom open={Boolean(match)} />
-        }}
-      />
+      </Suspense>
+      <Suspense fallback={<div>Loading :DDD</div>}>
+        <div
+          className={`ChatRooms ${
+            Location.pathname === '/' || Location.pathname === '/createChatRoom' || Location.pathname === '/Settings'
+              ? 'Show'
+              : ''
+          }`}
+        >
+          <ChatRooms
+            ChatRooms={chatRooms}
+            CambiaChatActual={CambiaChatActual}
+            CreateChatRoom={CreateChatRoom}
+            OpenSettings={() => history.push('/Settings')}
+          />
+        </div>
+      </Suspense>
+      <Suspense fallback={<div>Loading :DDD</div>}>
+        <Route
+          path={'/messagesBox'}
+          children={({ match }) => {
+            console.log(Boolean(match), '/createChatRoom')
+            return (
+              <div className={`MessagesBox ${view === 'MessagesBox' && Boolean(match) ? 'Show' : null}`}>
+                <MessagesBox
+                  closeMessageBox={closeMessageBox}
+                  show={Boolean(match)}
+                  conversation={chatActual}
+                  EnviaMensaje={EnviaMensaje}
+                  EnviaVisto={EnviaVisto}
+                  LeaveChatRoom={LeaveChatRoom}
+                />
+              </div>
+            )
+            // <CreateChatRoom open={Boolean(match)} />
+          }}
+        />
+      </Suspense>
     </div>
+    // </Suspense>
   )
 }
 export default App

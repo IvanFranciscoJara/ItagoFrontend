@@ -21,7 +21,10 @@ i18n.use(initReactI18next).init({
           no_chat_room: 'No estas en ninguna sala de chat, presiona el boton de arriba y crea una nueva'
         },
         MessagesBox: {
-          select_a_chatroom_from_left: 'Selecciona una sala de chat de la izquierda'
+          select_a_chatroom_from_left: 'Selecciona una sala de chat de la izquierda',
+          title_back: 'Volver a Salas de Chat',
+          title_share: 'Compartir Sala de Chat',
+          title_leave: 'Abandonar Sala de Chat'
         },
         CreateChatRoom: {
           title1: 'Creando una',
@@ -30,6 +33,7 @@ i18n.use(initReactI18next).init({
           name_placeholder: 'Equipo2020',
           description: 'Descripción de la sala de chat:',
           description_placeholder: 'sala de diversión',
+          alert: 'Ingresa un nombre para la sala:',
           create: 'Crear'
         },
         CreateLink: {

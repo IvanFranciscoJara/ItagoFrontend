@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import apiRequest from '../../../apiRequest'
+import apiRequest from '../../../Global/apiRequest'
 import Popup from './Popup'
 import './sass/CreateLink.sass'
-import { P_IconCopy } from '../../../icons'
+import { P_IconCopy } from '../../../Global/icons'
 import { useTranslation } from 'react-i18next'
+import Loader from '../Loader'
+
 const CreateLink = ({ open, idChatroom }) => {
   let Api = GLOBAL_URL
   const { t } = useTranslation()
+  const [loading, setLoading] = useState(false)
   const times = [
     {
       name: t('CreateLink.t5min'),
@@ -47,21 +50,35 @@ const CreateLink = ({ open, idChatroom }) => {
     setLink('')
   }
   const getLink = async () => {
+    setLoading(true)
     let respuesta = await apiRequest('chatRooms/createLink', { idChatroom, time: times[indexTime.index].value }, 'POST')
     setLink(respuesta._id)
     console.log(respuesta._id)
+    setLoading(false)
   }
   useEffect(() => {
     let Circle = document.getElementsByClassName('PickTime_Circle')[0]
     const pos = indexTime.index * 2 + 1
     // console.log(indexTime.diff)
-    var anim = Circle.animate([{ left: `calc(30px + (100% - 60px) / 8 * ${pos} - 10px)` }], {
-      // duration: 150 * indexTime.diff,
-      duration: 200,
-      iterations: 1,
-      // direction: 'alternate',
-      fill: 'forwards'
-    })
+    var anim
+    if (matchMedia('(max-width: 800px)').matches) {
+      // the viewport is at least 900 pixels wide
+      anim = Circle.animate([{ left: `calc(10px + (100% - 20px) / 8 * ${pos} - 10px)` }], {
+        // duration: 150 * indexTime.diff,
+        duration: 200,
+        iterations: 1,
+        // direction: 'alternate',
+        fill: 'forwards'
+      })
+    } else {
+      anim = Circle.animate([{ left: `calc(30px + (100% - 60px) / 8 * ${pos} - 10px)` }], {
+        // duration: 150 * indexTime.diff,
+        duration: 200,
+        iterations: 1,
+        // direction: 'alternate',
+        fill: 'forwards'
+      })
+    }
   }, [indexTime])
   return (
     <Popup open={open} close={close}>
@@ -82,20 +99,24 @@ const CreateLink = ({ open, idChatroom }) => {
           </div>
         </div>
         <div className={`Contenedor__Button ${link === '' && 'Show'}`}>
-          <button className='btn' onClick={getLink}>
+          <Loader
+            text={`${t('CreateLink.create1')} ${times[indexTime.index].name} ${t('CreateLink.create2')}`}
+            state={loading}
+            className=''
+            onClick={getLink}
+          />
+          {/* <button className='btn' onClick={getLink}>
             {t('CreateLink.create1')}
             {times[indexTime.index].name}
             {t('CreateLink.create2')}
-          </button>
+          </button> */}
         </div>
         <div className={`Contenedor__Link ${link !== '' && 'Show'}`}>
           <p>This link expire in {times[indexTime.index].name} minutes</p>
           <input
             id='link'
             value={`${
-              GLOBAL_URL === 'http://localhost:8080/'
-                ? 'http://localhost:8080/'
-                : 'https://master.drf12jlginq43.amplifyapp.com/'
+              GLOBAL_URL === 'http://localhost:9000/' ? 'http://localhost:9000/' : 'https://itago.net/'
             }Welcome/${link}`}
             readOnly
           />

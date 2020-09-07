@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import './sass/Welcome.sass'
-import { Itago } from '../icons'
+import { Itago } from '../Global/icons'
 import { useTranslation } from 'react-i18next'
 
 const Welcome = ({ Registrarse, open, codigo }) => {
@@ -60,7 +60,7 @@ const Welcome = ({ Registrarse, open, codigo }) => {
         {/* <p className='slogan'>Disposable Chats</p> */}
         <p className='slogan'>{t('Welcome.slogan')}</p>
         {codigo && (
-          <p className='slogan'>
+          <p className='invitacion'>
             {t('Welcome.recieve_invitation')} {codigo}
           </p>
         )}

@@ -11,6 +11,8 @@
     display: flex
     justify-content: center
     align-items: center
+    overflow: hidden
+    overflow-y: auto
     &.esconder
         transform: translateY(-100%)
    
@@ -51,20 +53,26 @@
             color: $F_Green            
         .slogan
             font-size: 20px
-            margin-bottom: 80px
-            color: $F_DarkGreen                                      
+            margin-bottom: 40px
+            color: $F_DarkGreen        
+        .invitacion
+            font-size: 20px
+            // margin: 10px 0
+            color: $F_DarkGreen                                   
+            border: 1px solid $gray-600
+            padding: 10px
 
         .Alerta
             color: #ffffff00
-            margin-bottom: 80px
+            margin-bottom: 60px
             text-align: center
             transition: .5s
             &.Red
                 color: $red      
         input
+            margin: 40px 0 10px 0
             font-size: 20px
-            padding: 5px 10px    
-            margin-bottom: 10px
+            padding: 5px 10px                
             text-align: center
         button
             width: 100%        

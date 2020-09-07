@@ -1,6 +1,6 @@
 import React from 'react'
 import './sass/Popup.sass'
-import { IconEquis } from '../../../icons'
+import { IconEquis } from '../../../Global/icons'
 const CreateChatRoom = props => {
   return (
     <React.Fragment>

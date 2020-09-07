@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './sass/CreateChatRoom.sass'
 import { useHistory } from 'react-router-dom'
-import { IconEquis } from '../../icons'
-import apiRequest from '../../apiRequest'
+import { IconEquis } from '../../Global/icons'
+import apiRequest from '../../Global/apiRequest'
 import Popup from './Popup'
 const CreateChatRoom = ({ open, EventClose }) => {
   const history = useHistory()

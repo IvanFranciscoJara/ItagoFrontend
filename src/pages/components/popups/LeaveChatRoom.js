@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import apiRequest from '../../../apiRequest'
 import Popup from './Popup'
 import './sass/LeaveChatRoom.sass'
-import { P_IconCopy } from '../../../icons'
+import { P_IconCopy } from '../../../Global/icons'
 import { useTranslation } from 'react-i18next'
 
 const LeaveChatRoom = ({ open, idChatroom, LeaveChatRoom }) => {
