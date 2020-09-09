@@ -5,11 +5,11 @@
 import { precacheAndRoute, supressWarnings, createHandlerBoundToURL } from 'workbox-precaching'
 import { NavigationRoute, registerRoute } from 'workbox-routing'
 // import { supressWarnings } from 'workbox-supressWarnings'
-import { core } from 'workbox-core'
+import { skipWaiting, clientsClaim } from 'workbox-core'
 console.log('⛪ Hello from service worker')
 
-workbox.skipWaiting()
-workbox.clientsClaim()
+skipWaiting()
+clientsClaim()
 
 precacheAndRoute(self.__WB_MANIFEST)
 
