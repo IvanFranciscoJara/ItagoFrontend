@@ -155,7 +155,8 @@ const App = props => {
       if (welcome === '/Welcome' && slash === '/') {
         history.push(Location.pathname)
       } else {
-        history.push('/Welcome')
+        console.log('aaaaaaaaaaaaaaaaaa')
+        // history.push('/Welcome')
       }
     } else {
       console.log(path)

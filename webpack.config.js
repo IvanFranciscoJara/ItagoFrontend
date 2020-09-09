@@ -14,8 +14,8 @@ module.exports = env => {
       filename: 'index_bundle.js',
       publicPath: '/'
     },
-    // devtool: env.TIPO === 'local' ? 'source-map' : false,
-    devtool: false,
+    devtool: env.TIPO === 'local' ? 'source-map' : false,
+    // devtool: false,
     // devtool: 'cheap-module-eval-source-map',
     devServer: {
       port: 9000,
