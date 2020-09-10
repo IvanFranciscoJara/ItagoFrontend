@@ -15,7 +15,7 @@ precacheAndRoute(self.__WB_MANIFEST)
 
 self.addEventListener('push', function (e) {
   var options = {
-    body: 'This notification was generated from a push!',
+    body: 'Tienes un mensaje nuevo',
     icon: 'images/example.png',
     vibrate: [100, 50, 100],
     data: {
@@ -23,12 +23,24 @@ self.addEventListener('push', function (e) {
       primaryKey: '2'
     },
     actions: [
-      { action: 'explore', title: 'Explore this new world', icon: 'images/checkmark.png' },
+      { action: 'GotoItago', title: 'Ir a Itago', icon: 'imagenes/android-chrome-512x512.png' },
       { action: 'close', title: 'Close', icon: 'images/xmark.png' }
     ]
   }
-  e.waitUntil(self.registration.showNotification('Hello world!', options))
+  e.waitUntil(self.registration.showNotification('Itago', options))
 })
+
+self.addEventListener(
+  'notificationclick',
+  function (event) {
+    event.notification.close()
+    if (event.action === 'GotoItago') {
+      clients.openWindow('https://www.itago.net')
+      //   archiveEmail();
+    }
+  },
+  false
+)
 
 const handler = createHandlerBoundToURL('/index.html')
 const navigationRoute = new NavigationRoute(handler)
