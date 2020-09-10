@@ -14,6 +14,7 @@ clientsClaim()
 precacheAndRoute(self.__WB_MANIFEST)
 
 self.addEventListener('push', function (e) {
+  console.log('hola', e.data)
   var options = {
     body: 'Tienes un mensaje nuevo',
     icon: 'images/example.png',
