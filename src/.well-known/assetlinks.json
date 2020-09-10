@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "net.itago",
+      "sha256_cert_fingerprints": [
+        "7B:0D:EB:A5:6F:85:0B:E6:EC:F7:AC:7B:AA:28:2F:5A:98:F0:FF:94:2D:9C:09:88:57:AE:5D:41:A3:49:14:F8"
+      ]
+    }
+  }
+]
