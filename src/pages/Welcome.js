@@ -58,7 +58,7 @@ const Welcome = ({ Registrarse, open, codigo }) => {
       applicationServerKey: 'BMwjQB3wSAGY7fKhblerz6StsVJ2JDJCd6dJG02iHNwZOcIJ1CCorr8AMwUi2oH51on9TYCIG3GEDo3xRwLfZKo'
     })
     console.log(JSON.stringify(push))
-    console.log('holaaa')
+    // console.log('holaaa')
   }
 
   return (
@@ -78,9 +78,9 @@ const Welcome = ({ Registrarse, open, codigo }) => {
         <button type='button' onClick={Cerrar} className='btn'>
           {t('Welcome.entrar')}
         </button>
-        <button className='btn' onClick={SuscribePushMessage}>
+        {/* <button className='btn' onClick={SuscribePushMessage}>
           Suscribirse
-        </button>
+        </button> */}
       </div>
     </div>
   )
