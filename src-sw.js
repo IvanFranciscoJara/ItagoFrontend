@@ -28,7 +28,11 @@ self.addEventListener('push', function (e) {
       { action: 'close', title: 'Close', icon: 'images/xmark.png' }
     ]
   }
-  e.waitUntil(self.registration.showNotification('Itago', options))
+  try {
+    e.waitUntil(self.registration.showNotification('Itago', options))
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 self.addEventListener(
