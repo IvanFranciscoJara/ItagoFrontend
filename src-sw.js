@@ -16,7 +16,3 @@ precacheAndRoute(self.__WB_MANIFEST)
 const handler = createHandlerBoundToURL('/index.html')
 const navigationRoute = new NavigationRoute(handler)
 registerRoute(navigationRoute)
-
-// self.__precacheManifest = [].concat(self.__precacheManifest || [])
-// supressWarnings()
-// workbox.precaching.precacheAndRoute(self.__WB_MANIFEST)

@@ -51,6 +51,15 @@ const Welcome = ({ Registrarse, open, codigo }) => {
   //     document.getElementsByClassName('ContenedorWelcome')[0].classList.add('esconder')
   //   }
   // }, [])
+  const SuscribePushMessage = async () => {
+    let sw = await navigator.serviceWorker.ready
+    let push = await sw.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: 'BMwjQB3wSAGY7fKhblerz6StsVJ2JDJCd6dJG02iHNwZOcIJ1CCorr8AMwUi2oH51on9TYCIG3GEDo3xRwLfZKo'
+    })
+    console.log(JSON.stringify(push))
+    console.log('holaaa')
+  }
 
   return (
     <div className={`ContenedorWelcome ${!open && 'esconder'}`}>
@@ -68,6 +77,9 @@ const Welcome = ({ Registrarse, open, codigo }) => {
         <p className='Alerta'>{t('Welcome.alert_type_a_nickname')}</p>
         <button type='button' onClick={Cerrar} className='btn'>
           {t('Welcome.entrar')}
+        </button>
+        <button className='btn' onClick={SuscribePushMessage}>
+          Suscribirse
         </button>
       </div>
     </div>
