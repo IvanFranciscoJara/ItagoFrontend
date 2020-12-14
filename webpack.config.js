@@ -40,7 +40,7 @@ module.exports = env => {
         template: 'src/index.html'
       }),
       new webpack.DefinePlugin({
-        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:8080/' : 'https://www.ivanf.net/')
+        GLOBAL_URL: JSON.stringify(env.TIPO === 'local' ? 'http://localhost:8080/' : 'https://backenditago.herokuapp.com/')
       }),
       new CopyPlugin({
         patterns: [
