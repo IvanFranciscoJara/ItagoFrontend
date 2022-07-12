@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --env.TIPO=prod",  
+    "build": "webpack --env.TIPO=prod",
     "test": "webpack-dev-server --env.TIPO=prod --host 0.0.0.0",
     "dev": "webpack-dev-server --env.TIPO=local --progress --colors --host 0.0.0.0"
   },

@@ -41,7 +41,7 @@ module.exports = env => {
       }),
       new webpack.DefinePlugin({
         GLOBAL_URL: JSON.stringify(
-          env.TIPO === 'local' ? 'http://localhost:8080/' : 'https://backenditago.herokuapp.com/'
+          env.TIPO === 'local' ? 'http://localhost:9001/' : 'https://itagoserver.herokuapp.com/'
         )
       }),
       new CopyPlugin({
